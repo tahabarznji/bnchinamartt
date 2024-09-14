@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "860950322160",
+    "project_id": "bnchinamartt",
+    "storage_bucket": "bnchinamartt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860950322160:android:4d2bde328bef1be3979b35",
+        "android_client_info": {
+          "package_name": "com.example.bnchinamartt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_dj4RDdczfsLU6BMzUAurpVInj0l0i6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
