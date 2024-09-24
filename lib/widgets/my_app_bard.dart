@@ -7,7 +7,7 @@ AppBar customAppBar() {
     // rangi appbar katek scroll dakai
 
     surfaceTintColor: Colors.transparent,
-    elevation: 0,
+
     backgroundColor: whiteColor,
 
     title: Column(

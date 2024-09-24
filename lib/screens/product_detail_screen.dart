@@ -13,6 +13,7 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: customAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),

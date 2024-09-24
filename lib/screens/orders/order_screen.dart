@@ -1,4 +1,5 @@
 import 'package:bnchinamartt/screens/orders/orders_card.dart';
+import 'package:bnchinamartt/utils/colors.dart';
 import 'package:bnchinamartt/utils/data.dart';
 import 'package:bnchinamartt/widgets/my_app_bard.dart';
 import 'package:bnchinamartt/widgets/order_banner.dart';
@@ -15,22 +16,27 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: customAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const OrderBanner(),
-              const SizedBox(
-                height: 20,
-              ),
-              for (int i = 0; i < orders.length; i++)
-                OrdersCard(
-                  order: orders[i],
+          child: orders.length == 0
+              ? const Center(
+                  child: Text('You dont have any orders'),
+                )
+              : Column(
+                  children: [
+                    const OrderBanner(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    for (int i = 0; i < orders.length; i++)
+                      OrdersCard(
+                        order: orders[i],
+                      ),
+                  ],
                 ),
-            ],
-          ),
         ),
       ),
     );
