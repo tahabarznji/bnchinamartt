@@ -21,7 +21,7 @@ class _OrderScreenState extends State<OrderScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
-          child: orders.length == 0
+          child: orders.isEmpty
               ? const Center(
                   child: Text('You dont have any orders'),
                 )
