@@ -2,7 +2,6 @@ import 'package:bnchinamartt/screens/product/layout_screen.dart';
 import 'package:bnchinamartt/screens/auth/sign_up_page.dart';
 import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
-import 'package:bnchinamartt/utils/data.dart';
 import 'package:bnchinamartt/utils/validators.dart';
 import 'package:bnchinamartt/widgets/custom_button.dart';
 import 'package:bnchinamartt/widgets/custome_banner.dart';

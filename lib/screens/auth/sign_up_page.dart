@@ -116,7 +116,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const Text('You Already have account?'),
                         TextButton(
                           onPressed: () {
-                            register(context);
+                            // register(context);
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ));
                           },
                           child: const Text('Login'),
                         )

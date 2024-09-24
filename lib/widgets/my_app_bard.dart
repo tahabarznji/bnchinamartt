@@ -4,6 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 AppBar customAppBar() {
   return AppBar(
+    // rangi appbar katek scroll dakai
+
+    surfaceTintColor: Colors.transparent,
+    elevation: 0,
+    backgroundColor: whiteColor,
+
     title: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

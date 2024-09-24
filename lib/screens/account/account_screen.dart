@@ -1,7 +1,6 @@
 import 'package:bnchinamartt/screens/account/custome_tile.dart';
 import 'package:bnchinamartt/screens/auth/change_pass_screen.dart';
 import 'package:bnchinamartt/screens/auth/login_screen.dart';
-import 'package:bnchinamartt/screens/product/home_screen.dart';
 import 'package:bnchinamartt/screens/orders/order_screen.dart';
 import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
