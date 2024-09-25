@@ -54,9 +54,7 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                Container(
-                  child: Image.asset(keyy),
-                ),
+                Image.asset(keyy),
                 Text(
                   'Change Password',
                   style: TextStyle(

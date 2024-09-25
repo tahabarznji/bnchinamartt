@@ -1,5 +1,5 @@
 import 'package:bnchinamartt/screens/product/layout_screen.dart';
-import 'package:bnchinamartt/screens/auth/sign_up_page.dart';
+import 'package:bnchinamartt/auth/view/screens/sign_up_page.dart';
 import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:bnchinamartt/utils/validators.dart';
