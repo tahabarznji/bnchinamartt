@@ -1,5 +1,6 @@
 import 'package:bnchinamartt/screens/product/layout_screen.dart';
 import 'package:bnchinamartt/auth/view/screens/sign_up_page.dart';
+import 'package:bnchinamartt/services/auth_service.dart';
 import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:bnchinamartt/utils/validators.dart';
@@ -8,8 +9,6 @@ import 'package:bnchinamartt/widgets/custome_banner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/widgets/custume_text_filed.dart';
-
-final _firebase = FirebaseAuth.instance;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,43 +22,26 @@ class _LoginScreenState extends State<LoginScreen> {
   String? password;
   // dabe form state be nak form agadart ba
   final _formKey = GlobalKey<FormState>();
-  void login(BuildContext context) {
-    final bool isValidate = _formKey.currentState!.validate();
 
-    if (!isValidate) {
-      return;
-    }
+  Future<void> signInWithEmailAndPassword() async {
+    final isValidate = _formKey.currentState!.validate();
+    if (!isValidate) return;
     _formKey.currentState!.save();
-
     try {
-      final UserCredential = _firebase.signInWithEmailAndPassword(
-          email: email!, password: password!);
-    } on FirebaseAuthException {
-      ScaffoldMessenger.of(context).clearSnackBars();
+      AuthService()
+          .signInWithEmailAndPassword(email: email!, password: password!);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const LayoutScreen();
+          },
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      debugPrint('Failed with error code: ${e.code}');
+      debugPrint(e.message);
     }
-
-    // bool isLogin = false;
-    // for (var user in accounts) {
-    //   if (user["email"] == email && user["password"] == password) {
-    //     currentUser = user;
-    //     isLogin = true;
-    //     break;
-    //   }
-    // }
-
-    // if (!isLogin) {
-    //   errorsnackbar(context, "Invalid  Email or Password");
-    //   return;
-    // }
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return const LayoutScreen();
-        },
-      ),
-    );
   }
 
   @override
@@ -115,9 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       CustomButton(
                         text: 'Login',
-                        onPressed: () {
-                          login(context);
-                        },
+                        onPressed: () {},
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

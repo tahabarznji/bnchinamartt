@@ -1,4 +1,4 @@
-import 'package:bnchinamartt/screens/auth/login_screen.dart';
+import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';

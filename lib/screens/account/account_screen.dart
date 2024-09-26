@@ -1,13 +1,15 @@
 import 'package:bnchinamartt/screens/account/custome_tile.dart';
-import 'package:bnchinamartt/screens/auth/change_pass_screen.dart';
-import 'package:bnchinamartt/screens/auth/login_screen.dart';
+import 'package:bnchinamartt/auth/view/screens/change_pass_screen.dart';
+import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
 import 'package:bnchinamartt/screens/orders/order_screen.dart';
+import 'package:bnchinamartt/services/auth_service.dart';
 import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:bnchinamartt/utils/data.dart';
 import 'package:bnchinamartt/utils/validators.dart';
 import 'package:bnchinamartt/widgets/custom_button.dart';
 import 'package:bnchinamartt/widgets/custume_text_filed.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,6 +21,13 @@ class AcountScreen extends ConsumerStatefulWidget {
 }
 
 class _AcountScreenState extends ConsumerState<AcountScreen> {
+  // to get the user from the firestore
+  final User? user = AuthService().currentUser;
+
+  Future<void> signOut() async {
+    await AuthService().signOut();
+  }
+
   final _formKeyy = GlobalKey<FormState>();
   String? cobonCode;
 

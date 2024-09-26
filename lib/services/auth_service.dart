@@ -32,7 +32,6 @@ class AuthService {
       await _auth.currentUser!.updatePassword(newPassword); // Update password
       print("Password updated successfully.");
     } on FirebaseAuthException catch (e) {
-      // Handle specific Firebase exceptions
       if (e.code == 'weak-password') {
         print("The password provided is too weak.");
       } else if (e.code == 'requires-recent-login') {
@@ -42,7 +41,6 @@ class AuthService {
         print("Failed to update password: ${e.message}");
       }
     } catch (e) {
-      // Handle any other errors
       print("An unexpected error occurred: $e");
     }
   }

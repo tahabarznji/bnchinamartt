@@ -1,6 +1,9 @@
 import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
+import 'package:bnchinamartt/screens/product/layout_screen.dart';
+import 'package:bnchinamartt/services/auth_service.dart';
 import 'package:bnchinamartt/utils/data.dart';
 import 'package:bnchinamartt/utils/validators.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/widgets/custome_banner.dart';
 import 'package:bnchinamartt/widgets/custume_text_filed.dart';
@@ -21,27 +24,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String? username;
   final _formKey = GlobalKey<FormState>();
 
-  void register(BuildContext context) {
-    final bool isValidate = _formKey.currentState!.validate();
-
-    if (!isValidate) {
-      return;
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      AuthService()
+          .createUserWithEmailAndPassword(email: email!, password: password!);
+      _formKey.currentState!.reset();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LayoutScreen(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.message);
     }
-
-    _formKey.currentState!.save();
-    accounts.add({
-      "username": username,
-      "email": email,
-      "password": password,
-    });
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return const LoginScreen();
-        },
-      ),
-    );
   }
 
   @override
@@ -107,6 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          createUserWithEmailAndPassword();
                         }
                       },
                     ),
