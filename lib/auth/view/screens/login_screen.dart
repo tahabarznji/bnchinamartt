@@ -5,7 +5,7 @@ import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:bnchinamartt/utils/validators.dart';
 import 'package:bnchinamartt/widgets/custom_button.dart';
-import 'package:bnchinamartt/widgets/custome_banner.dart';
+import 'package:bnchinamartt/auth/view/widgets/auth_banner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/widgets/custume_text_filed.dart';
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const MarketBanner(),
+              const AuthBanner(),
               const SizedBox(
                 height: 30,
               ),
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       CustomButton(
                         text: 'Login',
-                        onPressed: () {},
+                        onPressed: signInWithEmailAndPassword,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,15 +1,20 @@
+import 'package:bnchinamartt/auth/model/user_data_model.dart';
+import 'package:bnchinamartt/auth/providers/user_provider.dart';
+import 'package:bnchinamartt/auth/providers/user_provider.dart';
 import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
 import 'package:bnchinamartt/screens/product/layout_screen.dart';
 import 'package:bnchinamartt/services/auth_service.dart';
+import 'package:bnchinamartt/services/firestore_service.dart';
 import 'package:bnchinamartt/utils/data.dart';
 import 'package:bnchinamartt/utils/validators.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bnchinamartt/widgets/custome_banner.dart';
+import 'package:bnchinamartt/auth/view/widgets/auth_banner.dart';
 import 'package:bnchinamartt/widgets/custume_text_filed.dart';
 import 'package:bnchinamartt/widgets/custom_button.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:bnchinamartt/utils/assets.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -23,12 +28,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String? password;
   String? username;
   final _formKey = GlobalKey<FormState>();
+  late UserProvider userProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    userProvider = Provider.of<UserProvider>(context, listen: false);
+  }
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
       AuthService()
           .createUserWithEmailAndPassword(email: email!, password: password!);
+
+      final newUserDataModel = UserDataModel(
+        email: email!,
+        name: username,
+        id: '',
+        governance: '',
+        isAdmin: false,
+      );
+
+      await FirestoreService().addUser(newUserDataModel);
+      userProvider.setUserDataModel(newUserDataModel);
       _formKey.currentState!.reset();
+
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -47,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const MarketBanner(),
+            const AuthBanner(),
             const SizedBox(
               height: 30,
             ),
@@ -73,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: 'username',
                       icon: usernameIcon,
                       onValidate: validatorUsername,
-                      onSaved: (newVlaue) => password = newVlaue,
+                      onSaved: (newVlaue) => username = newVlaue,
                     ),
                     const SizedBox(
                       height: 20,

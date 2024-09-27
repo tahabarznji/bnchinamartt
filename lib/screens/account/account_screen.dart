@@ -1,3 +1,4 @@
+import 'package:bnchinamartt/auth/providers/user_provider.dart';
 import 'package:bnchinamartt/screens/account/custome_tile.dart';
 import 'package:bnchinamartt/auth/view/screens/change_pass_screen.dart';
 import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
@@ -11,21 +12,22 @@ import 'package:bnchinamartt/widgets/custom_button.dart';
 import 'package:bnchinamartt/widgets/custume_text_filed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
 
-class AcountScreen extends ConsumerStatefulWidget {
+class AcountScreen extends StatefulWidget {
   const AcountScreen({super.key});
 
   @override
-  ConsumerState<AcountScreen> createState() => _AcountScreenState();
+  State<AcountScreen> createState() => _AcountScreenState();
 }
 
-class _AcountScreenState extends ConsumerState<AcountScreen> {
+class _AcountScreenState extends State<AcountScreen> {
   // to get the user from the firestore
   final User? user = AuthService().currentUser;
 
   Future<void> signOut() async {
     await AuthService().signOut();
+    debugPrint('SignOut seccssfully');
   }
 
   final _formKeyy = GlobalKey<FormState>();
@@ -157,14 +159,18 @@ class _AcountScreenState extends ConsumerState<AcountScreen> {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(
-                  currentUser['username'] ?? 'ME',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                  ),
-                )
+                Consumer<UserProvider>(
+                  builder: (_, userProvider, child) {
+                    return Text(
+                      userProvider.getUserDataModel.name ?? 'null',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -224,7 +230,7 @@ class _AcountScreenState extends ConsumerState<AcountScreen> {
             icon: signoutIcon,
             text: 'Sign out',
             onTap: () {
-              currentUser = {};
+              signOut();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

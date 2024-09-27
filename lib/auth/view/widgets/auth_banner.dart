@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 
-class MarketBanner extends StatelessWidget {
-  const MarketBanner({super.key});
+class AuthBanner extends StatelessWidget {
+  const AuthBanner({super.key});
 
   @override
   Widget build(BuildContext context) {

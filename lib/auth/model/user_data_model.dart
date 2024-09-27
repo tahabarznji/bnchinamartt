@@ -1,22 +1,21 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserDataModel {
-  String name;
-  String email;
-  bool isAdmin;
-  String porfilePicture;
-  String id;
-  String governance;
+  String? id;
+  String? name;
+  String? email;
+  bool? isAdmin;
+  String? porfilePicture;
+
+  String? governance;
 
   UserDataModel({
-    required this.name,
-    required this.email,
-    required this.isAdmin,
-    required this.porfilePicture,
-    required this.id,
-    required this.governance,
+    this.name,
+    this.email,
+    this.isAdmin,
+    this.porfilePicture,
+    this.id,
+    this.governance,
   });
 
   Map<String, dynamic> toMap() {
@@ -57,16 +56,15 @@ class UserDataModel {
     String? name,
     String? email,
     bool? isAdmin,
-    String? porfilePicture,
-    String? id,
+    String? profilePicture,
     String? governance,
   }) {
     return UserDataModel(
+      id: this.id, // Keeping the same ID; excluded from being modified
       name: name ?? this.name,
       email: email ?? this.email,
       isAdmin: isAdmin ?? this.isAdmin,
-      porfilePicture: porfilePicture ?? this.porfilePicture,
-      id: id ?? this.id,
+
       governance: governance ?? this.governance,
     );
   }

@@ -1,7 +1,10 @@
+import 'package:bnchinamartt/auth/providers/user_provider.dart';
 import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
+import 'package:bnchinamartt/widget_tree.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -9,7 +12,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const BnchinaMartApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: const BnchinaMartApp(),
+    ),
+  );
 }
 
 class BnchinaMartApp extends StatelessWidget {
@@ -25,9 +33,10 @@ class BnchinaMartApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
         useMaterial3: true,
       ),
-      home: const Center(
-        child: LoginScreen(),
-      ),
+      // home: const Center(
+      //   child: LoginScreen(),
+      // ),
+      home: const WidgetTree(),
     );
   }
 }
