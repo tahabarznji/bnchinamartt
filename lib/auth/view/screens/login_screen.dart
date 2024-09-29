@@ -1,6 +1,8 @@
+import 'package:bnchinamartt/auth/providers/user_provider.dart';
 import 'package:bnchinamartt/screens/product/layout_screen.dart';
 import 'package:bnchinamartt/auth/view/screens/sign_up_page.dart';
 import 'package:bnchinamartt/services/auth_service.dart';
+import 'package:bnchinamartt/services/firestore_service.dart';
 import 'package:bnchinamartt/utils/assets.dart';
 import 'package:bnchinamartt/utils/colors.dart';
 import 'package:bnchinamartt/utils/validators.dart';
@@ -9,6 +11,7 @@ import 'package:bnchinamartt/auth/view/widgets/auth_banner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/widgets/custume_text_filed.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,6 +21,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late UserProvider userProvider;
+  @override
+  void initState() {
+    userProvider = Provider.of(context, listen: false);
+    super.initState();
+  }
+
   String? email;
   String? password;
   // dabe form state be nak form agadart ba
@@ -28,8 +38,21 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!isValidate) return;
     _formKey.currentState!.save();
     try {
-      AuthService()
+      final UserCredential userCredential = await AuthService()
           .signInWithEmailAndPassword(email: email!, password: password!);
+      if (userCredential == null) {
+        debugPrint('User credintial is wrong');
+        return;
+      }
+      final userDataModel =
+          await FirestoreService().getUser(userCredential.user!.uid);
+      if (userDataModel == null) {
+        debugPrint('can not get user data model wrong');
+        return;
+      }
+
+      userProvider.setUserDataModel(userDataModel);
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

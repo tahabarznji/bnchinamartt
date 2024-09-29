@@ -38,13 +38,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
-      AuthService()
+      final UserCredential userCredential = await AuthService()
           .createUserWithEmailAndPassword(email: email!, password: password!);
+
+      final String uId = userCredential.user!.uid;
 
       final newUserDataModel = UserDataModel(
         email: email!,
         name: username,
-        id: '',
+        id: uId,
         governance: '',
         isAdmin: false,
       );

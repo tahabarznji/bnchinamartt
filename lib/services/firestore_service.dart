@@ -6,8 +6,8 @@ class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<void> addUser(UserDataModel userDataModel) async {
-    var refrence = _db.collection('users').doc();
-    await refrence.set(userDataModel.copyWith().toFirestore());
+    var refrence = _db.collection('users').doc(userDataModel.id);
+    await refrence.set(userDataModel.toFirestore());
   }
 
   Future<void> deleteUser(String id) async {

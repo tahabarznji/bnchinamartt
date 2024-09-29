@@ -6,7 +6,6 @@ class UserDataModel {
   String? email;
   bool? isAdmin;
   String? porfilePicture;
-
   String? governance;
 
   UserDataModel({
@@ -64,7 +63,6 @@ class UserDataModel {
       name: name ?? this.name,
       email: email ?? this.email,
       isAdmin: isAdmin ?? this.isAdmin,
-
       governance: governance ?? this.governance,
     );
   }
