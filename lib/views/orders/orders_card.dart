@@ -1,4 +1,4 @@
-import 'package:bnchinamartt/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

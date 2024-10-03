@@ -7,6 +7,7 @@ class UserDataModel {
   bool? isAdmin;
   String? porfilePicture;
   String? governance;
+  List<String>? orders;
 
   UserDataModel({
     this.name,
@@ -15,6 +16,7 @@ class UserDataModel {
     this.porfilePicture,
     this.id,
     this.governance,
+    this.orders,
   });
 
   Map<String, dynamic> toMap() {
@@ -26,6 +28,9 @@ class UserDataModel {
     result.addAll({'porfilePicture': porfilePicture});
     result.addAll({'id': id});
     result.addAll({'governance': governance});
+    if (orders != null) {
+      result.addAll({'orders': orders});
+    }
 
     return result;
   }
@@ -38,6 +43,7 @@ class UserDataModel {
       porfilePicture: map['porfilePicture'] ?? '',
       id: map['id'] ?? '',
       governance: map['governance'] ?? '',
+      orders: map['orders'] != null ? List<String>.from(map['orders']) : null,
     );
   }
 
@@ -57,6 +63,7 @@ class UserDataModel {
     bool? isAdmin,
     String? profilePicture,
     String? governance,
+    List<String>? orders,
   }) {
     return UserDataModel(
       id: this.id, // Keeping the same ID; excluded from being modified
@@ -64,6 +71,7 @@ class UserDataModel {
       email: email ?? this.email,
       isAdmin: isAdmin ?? this.isAdmin,
       governance: governance ?? this.governance,
+      orders: orders ?? this.orders,
     );
   }
 }

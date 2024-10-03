@@ -1,4 +1,4 @@
-import 'package:bnchinamartt/auth/model/user_data_model.dart';
+import 'package:bnchinamartt/models/user_data_model.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider with ChangeNotifier {

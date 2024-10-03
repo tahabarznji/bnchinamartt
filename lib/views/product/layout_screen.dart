@@ -1,9 +1,9 @@
-import 'package:bnchinamartt/screens/account/account_screen.dart';
-import 'package:bnchinamartt/screens/basket/basket_screen.dart';
-import 'package:bnchinamartt/screens/product/home_screen.dart';
-import 'package:bnchinamartt/utils/assets.dart';
-import 'package:bnchinamartt/utils/colors.dart';
-import 'package:bnchinamartt/widgets/my_app_bard.dart';
+import 'package:bnchinamartt/views/account/account_screen.dart';
+import 'package:bnchinamartt/views/basket/basket_screen.dart';
+import 'package:bnchinamartt/views/product/home_screen.dart';
+import 'package:bnchinamartt/core/utils/assets.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

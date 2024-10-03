@@ -1,8 +1,8 @@
-import 'package:bnchinamartt/screens/orders/orders_card.dart';
-import 'package:bnchinamartt/utils/colors.dart';
-import 'package:bnchinamartt/utils/data.dart';
-import 'package:bnchinamartt/widgets/my_app_bard.dart';
-import 'package:bnchinamartt/widgets/order_banner.dart';
+import 'package:bnchinamartt/views/orders/orders_card.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/data.dart';
+import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
+import 'package:bnchinamartt/core/widgets/order_banner.dart';
 import 'package:flutter/material.dart';
 
 class OrderScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:bnchinamartt/utils/data.dart';
-import 'package:bnchinamartt/utils/validators.dart';
+import 'package:bnchinamartt/core/utils/data.dart';
+import 'package:bnchinamartt/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 
 void addToBasked(BuildContext context, listViewProduct) {

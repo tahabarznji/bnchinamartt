@@ -1,15 +1,16 @@
-import 'package:bnchinamartt/auth/providers/user_provider.dart';
-import 'package:bnchinamartt/screens/account/custome_tile.dart';
+import 'package:bnchinamartt/admin/admin_panel.dart';
+import 'package:bnchinamartt/view_models/user_provider.dart';
+import 'package:bnchinamartt/views/account/custome_tile.dart';
 import 'package:bnchinamartt/auth/view/screens/change_pass_screen.dart';
 import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
-import 'package:bnchinamartt/screens/orders/order_screen.dart';
-import 'package:bnchinamartt/services/auth_service.dart';
-import 'package:bnchinamartt/utils/assets.dart';
-import 'package:bnchinamartt/utils/colors.dart';
-import 'package:bnchinamartt/utils/data.dart';
-import 'package:bnchinamartt/utils/validators.dart';
-import 'package:bnchinamartt/widgets/custom_button.dart';
-import 'package:bnchinamartt/widgets/custume_text_filed.dart';
+import 'package:bnchinamartt/views/orders/order_screen.dart';
+import 'package:bnchinamartt/core/services/auth_service.dart';
+import 'package:bnchinamartt/core/utils/assets.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/data.dart';
+import 'package:bnchinamartt/core/utils/validators.dart';
+import 'package:bnchinamartt/core/widgets/custom_button.dart';
+import 'package:bnchinamartt/core/widgets/custume_text_filed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -244,6 +245,22 @@ class _AcountScreenState extends State<AcountScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const LoginScreen(),
+                ),
+              );
+            },
+          ),
+          const Divider(
+            height: 0,
+          ),
+          CoustomeTile(
+            icon: signoutIcon,
+            text: 'admin panel',
+            onTap: () {
+              signOut();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AdminPanel(),
                 ),
               );
             },

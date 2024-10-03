@@ -1,5 +1,5 @@
-import 'package:bnchinamartt/utils/assets.dart';
-import 'package:bnchinamartt/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/assets.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class OrderBanner extends StatelessWidget {

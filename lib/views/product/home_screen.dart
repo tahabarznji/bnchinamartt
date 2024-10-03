@@ -1,5 +1,5 @@
-import 'package:bnchinamartt/screens/category/category_screen.dart';
-import 'package:bnchinamartt/utils/colors.dart';
+import 'package:bnchinamartt/views/category/category_screen.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/widgets/products/horizantal_product_card.dart';
 import 'package:bnchinamartt/widgets/category/category_list.dart';
 import 'package:bnchinamartt/widgets/products/vertical_product_list.dart';

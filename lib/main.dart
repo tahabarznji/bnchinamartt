@@ -1,8 +1,8 @@
-import 'package:bnchinamartt/auth/providers/user_provider.dart';
+import 'package:bnchinamartt/view_models/user_provider.dart';
 import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
 import 'package:bnchinamartt/widget_tree.dart';
 import 'package:flutter/material.dart';
-import 'package:bnchinamartt/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';

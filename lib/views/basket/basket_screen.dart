@@ -1,8 +1,8 @@
-import 'package:bnchinamartt/utils/colors.dart';
-import 'package:bnchinamartt/utils/data.dart';
-import 'package:bnchinamartt/utils/validators.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/data.dart';
+import 'package:bnchinamartt/core/utils/validators.dart';
 import 'package:bnchinamartt/widgets/basket/basket_card.dart';
-import 'package:bnchinamartt/widgets/custom_button.dart';
+import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:shortid/shortid.dart';
 

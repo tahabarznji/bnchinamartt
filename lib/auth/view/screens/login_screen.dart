@@ -1,16 +1,16 @@
-import 'package:bnchinamartt/auth/providers/user_provider.dart';
-import 'package:bnchinamartt/screens/product/layout_screen.dart';
+import 'package:bnchinamartt/view_models/user_provider.dart';
+import 'package:bnchinamartt/views/product/layout_screen.dart';
 import 'package:bnchinamartt/auth/view/screens/sign_up_page.dart';
-import 'package:bnchinamartt/services/auth_service.dart';
-import 'package:bnchinamartt/services/firestore_service.dart';
-import 'package:bnchinamartt/utils/assets.dart';
-import 'package:bnchinamartt/utils/colors.dart';
-import 'package:bnchinamartt/utils/validators.dart';
-import 'package:bnchinamartt/widgets/custom_button.dart';
+import 'package:bnchinamartt/core/services/auth_service.dart';
+import 'package:bnchinamartt/core/services/firestore_service.dart';
+import 'package:bnchinamartt/core/utils/assets.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/validators.dart';
+import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:bnchinamartt/auth/view/widgets/auth_banner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bnchinamartt/widgets/custume_text_filed.dart';
+import 'package:bnchinamartt/core/widgets/custume_text_filed.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
