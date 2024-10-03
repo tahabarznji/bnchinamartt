@@ -1,6 +1,6 @@
-import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
-import 'package:bnchinamartt/screens/product/layout_screen.dart';
-import 'package:bnchinamartt/services/auth_service.dart';
+import 'package:bnchinamartt/views/auth/login_screen.dart';
+import 'package:bnchinamartt/views/product/layout_screen.dart';
+import 'package:bnchinamartt/core/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class WidgetTree extends StatefulWidget {

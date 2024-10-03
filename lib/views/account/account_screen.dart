@@ -1,8 +1,8 @@
-import 'package:bnchinamartt/admin/admin_panel.dart';
+import 'package:bnchinamartt/views/admin/admin_panel_screen.dart';
 import 'package:bnchinamartt/view_models/user_provider.dart';
 import 'package:bnchinamartt/views/account/custome_tile.dart';
-import 'package:bnchinamartt/auth/view/screens/change_pass_screen.dart';
-import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
+import 'package:bnchinamartt/views/auth/change_pass_screen.dart';
+import 'package:bnchinamartt/views/auth/login_screen.dart';
 import 'package:bnchinamartt/views/orders/order_screen.dart';
 import 'package:bnchinamartt/core/services/auth_service.dart';
 import 'package:bnchinamartt/core/utils/assets.dart';
@@ -260,7 +260,7 @@ class _AcountScreenState extends State<AcountScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AdminPanel(),
+                  builder: (context) => AdminPanelScreen(),
                 ),
               );
             },

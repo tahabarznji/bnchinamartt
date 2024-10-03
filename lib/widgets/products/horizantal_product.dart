@@ -1,6 +1,6 @@
-import 'package:bnchinamartt/screens/product_detail_screen.dart';
-import 'package:bnchinamartt/utils/colors.dart';
-import 'package:bnchinamartt/utils/funtions.dart';
+import 'package:bnchinamartt/views/product_detail_screen.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/funtions.dart';
 import 'package:flutter/material.dart';
 
 class HorizantalProductCard extends StatelessWidget {

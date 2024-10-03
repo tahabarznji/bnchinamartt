@@ -1,5 +1,5 @@
-import 'package:bnchinamartt/screens/products.dart';
-import 'package:bnchinamartt/utils/colors.dart';
+import 'package:bnchinamartt/views/products.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {

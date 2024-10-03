@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bnchinamartt/utils/assets.dart';
-import 'package:bnchinamartt/utils/colors.dart';
+import 'package:bnchinamartt/core/utils/assets.dart';
+import 'package:bnchinamartt/core/utils/colors.dart';
 
 class AuthBanner extends StatelessWidget {
   const AuthBanner({super.key});

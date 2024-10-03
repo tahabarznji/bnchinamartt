@@ -1,12 +1,12 @@
 import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:flutter/material.dart';
 
-class AdminPanel extends StatefulWidget {
+class AdminPanelScreen extends StatefulWidget {
   @override
   _AdminPanelState createState() => _AdminPanelState();
 }
 
-class _AdminPanelState extends State<AdminPanel> {
+class _AdminPanelState extends State<AdminPanelScreen> {
   final _formKey = GlobalKey<FormState>();
   final _priceController = TextEditingController();
   final _nameController = TextEditingController();

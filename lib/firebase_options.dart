@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -65,4 +56,32 @@ class DefaultFirebaseOptions {
     storageBucket: 'bnchinamartt.appspot.com',
     iosBundleId: 'com.example.bnchinamartt',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCBMIrzidUze5nYqjkM5x8Mlhu-bEL4a0o',
+    appId: '1:860950322160:web:5207d3a055177e6b979b35',
+    messagingSenderId: '860950322160',
+    projectId: 'bnchinamartt',
+    authDomain: 'bnchinamartt.firebaseapp.com',
+    storageBucket: 'bnchinamartt.appspot.com',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBbbFF5RNYBrQTo8XaTYMFfM4SoAvOW-fQ',
+    appId: '1:860950322160:ios:e12ddda1ac948c11979b35',
+    messagingSenderId: '860950322160',
+    projectId: 'bnchinamartt',
+    storageBucket: 'bnchinamartt.appspot.com',
+    iosBundleId: 'com.example.bnchinamartt',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCBMIrzidUze5nYqjkM5x8Mlhu-bEL4a0o',
+    appId: '1:860950322160:web:59b56bf2d7aa0021979b35',
+    messagingSenderId: '860950322160',
+    projectId: 'bnchinamartt',
+    authDomain: 'bnchinamartt.firebaseapp.com',
+    storageBucket: 'bnchinamartt.appspot.com',
+  );
+
 }

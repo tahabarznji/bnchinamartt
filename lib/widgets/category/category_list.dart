@@ -1,4 +1,4 @@
-import 'package:bnchinamartt/utils/data.dart';
+import 'package:bnchinamartt/core/utils/data.dart';
 import 'package:bnchinamartt/widgets/category/category_card.dart';
 import 'package:flutter/material.dart';
 

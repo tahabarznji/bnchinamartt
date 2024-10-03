@@ -18,9 +18,29 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-    return await _auth.createUserWithEmailAndPassword(
-        email: email, password: password);
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      // Handle specific Firebase Auth exceptions
+      throw e;
+    } catch (e) {
+      // Handle other exceptions
+      throw Exception('Failed to create user: $e');
+    }
   }
+
+  // Future<UserCredential> createUserWithEmailAndPassword({
+  //   required String email,
+  //   required String password,
+  // }) async {
+  //   return await _auth.createUserWithEmailAndPassword(
+  //       email: email, password: password);
+  // }
 
   Future<void> signOut() async {
     await _auth.signOut();

@@ -1,5 +1,5 @@
 import 'package:bnchinamartt/view_models/user_provider.dart';
-import 'package:bnchinamartt/auth/view/screens/login_screen.dart';
+import 'package:bnchinamartt/views/auth/login_screen.dart';
 import 'package:bnchinamartt/widget_tree.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
