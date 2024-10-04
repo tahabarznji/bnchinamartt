@@ -20,9 +20,9 @@ class _BasketScreenState extends State<BasketScreen> {
       total += basketProducts[i]["totalPrice"];
     }
 
-    if (currentUser["discount"] != 0) {
-      total -= total * (currentUser["discount"] / 100);
-    }
+    // if (currentUser["discount"] != 0) {
+    //   total -= total * (currentUser["discount"] / 100);
+    // }
 
     return total;
   }
@@ -111,7 +111,7 @@ class _BasketScreenState extends State<BasketScreen> {
                   "data": basketProducts,
                 });
                 basketProducts = [];
-                currentUser["discount"] = 0;
+                // currentUser["discount"] = 0;
                 addsnackbar(context, 'Thanks for checkout');
               });
             },

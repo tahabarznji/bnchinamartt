@@ -19,24 +19,24 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
 
   String? newPass = '';
 
-  void onSave(BuildContext context) {
-    final isValidate = _formKey.currentState!.validate();
-    if (!isValidate) {
-      return;
-    }
-    _formKey.currentState!.save();
+  // void onSave(BuildContext context) {
+  //   final isValidate = _formKey.currentState!.validate();
+  //   if (!isValidate) {
+  //     return;
+  //   }
+  //   _formKey.currentState!.save();
 
-    if (isValidate) {
-      for (var account in accounts) {
-        if (account['username'] == currentUser["username"] &&
-            account["email"] == currentUser["email"]) {
-          account["password"] = newPass;
-        }
-      }
-      addsnackbar(context, "Your password is updated");
-    }
-    Navigator.pop(context);
-  }
+  //   if (isValidate) {
+  //     for (var account in accounts) {
+  //       if (account['username'] == currentUser["username"] &&
+  //           account["email"] == currentUser["email"]) {
+  //         account["password"] = newPass;
+  //       }
+  //     }
+  //     addsnackbar(context, "Your password is updated");
+  //   }
+  //   Navigator.pop(context);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +69,9 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                   text: 'Current password',
                   icon: passwordIcon,
                   onValidate: (validate) {
-                    if (validate == currentUser["password"]) {
-                      return null;
-                    }
+                    // if (validate == currentUser["password"]) {
+                    //   return null;
+                    // }
                     return 'Your password is not correct';
                   },
                   onSaved: (newVlaue) {},
@@ -93,7 +93,7 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                 CustomButton(
                   text: 'Update password',
                   onPressed: () {
-                    onSave(context);
+                    // onSave(context);
                   },
                 ),
               ],

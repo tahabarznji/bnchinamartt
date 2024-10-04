@@ -14,6 +14,25 @@ class AuthService {
         email: email, password: password);
   }
 
+  // Future<UserCredential> createUserWithEmailAndPassword({
+  //   required String email,
+  //   required String password,
+  // }) async {
+  //   try {
+  //     UserCredential userCredential =
+  //         await _auth.createUserWithEmailAndPassword(
+  //       email: email,
+  //       password: password,
+  //     );
+  //     return userCredential;
+  //   } on FirebaseAuthException catch (e) {
+
+  //     throw e;
+  //   } catch (e) {
+  //     // Handle other exceptions
+  //     throw Exception('Failed to create user: $e');
+  //   }
+  // }
   Future<UserCredential> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -25,11 +44,7 @@ class AuthService {
         password: password,
       );
       return userCredential;
-    } on FirebaseAuthException catch (e) {
-      // Handle specific Firebase Auth exceptions
-      throw e;
     } catch (e) {
-      // Handle other exceptions
       throw Exception('Failed to create user: $e');
     }
   }

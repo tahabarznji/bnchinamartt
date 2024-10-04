@@ -2,7 +2,7 @@ import 'package:bnchinamartt/view_models/user_provider.dart';
 import 'package:bnchinamartt/views/product/layout_screen.dart';
 import 'package:bnchinamartt/views/auth/sign_up_screen.dart';
 import 'package:bnchinamartt/core/services/auth_service.dart';
-import 'package:bnchinamartt/core/services/firestore_service.dart';
+import 'package:bnchinamartt/core/services/auth_firestore_service.dart';
 import 'package:bnchinamartt/core/utils/assets.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/validators.dart';
@@ -22,6 +22,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late UserProvider userProvider;
+  bool isLoading = false;
   @override
   void initState() {
     userProvider = Provider.of(context, listen: false);
@@ -37,21 +38,35 @@ class _LoginScreenState extends State<LoginScreen> {
     final isValidate = _formKey.currentState!.validate();
     if (!isValidate) return;
     _formKey.currentState!.save();
+
+    setState(() {
+      isLoading = true;
+    });
     try {
       final UserCredential userCredential = await AuthService()
           .signInWithEmailAndPassword(email: email!, password: password!);
       if (userCredential == null) {
         debugPrint('User credintial is wrong');
+        setState(() {
+          isLoading = false;
+        });
         return;
       }
       final userDataModel =
-          await FirestoreService().getUser(userCredential.user!.uid);
+          await AuthFirestoreService().getUser(userCredential.user!.uid);
       if (userDataModel == null) {
         debugPrint('can not get user data model wrong');
+        setState(() {
+          isLoading = false;
+        });
         return;
       }
 
       userProvider.setUserDataModel(userDataModel);
+
+      setState(() {
+        isLoading = false;
+      });
 
       Navigator.pushReplacement(
         context,
@@ -62,6 +77,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } on FirebaseAuthException catch (e) {
+      setState(() {
+        isLoading = false;
+      });
       debugPrint('Failed with error code: ${e.code}');
       debugPrint(e.message);
     }
@@ -118,10 +136,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      CustomButton(
-                        text: 'Login',
-                        onPressed: signInWithEmailAndPassword,
-                      ),
+                      if (isLoading == true) ...{
+                        CircularProgressIndicator(),
+                      } else
+                        CustomButton(
+                          text: 'Login',
+                          onPressed: signInWithEmailAndPassword,
+                        ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

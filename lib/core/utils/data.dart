@@ -1,9 +1,9 @@
-Map<String, dynamic> currentUser = {
-  "username": "Shadyar",
-  "email": "shadyar@gmail.com",
-  "password": "12121212",
-  "discount": 0,
-};
+// Map<String, dynamic> currentUser = {
+//   "username": "Shadyar",
+//   "email": "shadyar@gmail.com",
+//   "password": "12121212",
+//   "discount": 0,
+// };
 
 List<Map<String, dynamic>> coubons = [
   {
@@ -28,32 +28,32 @@ List<Map<String, dynamic>> coubons = [
   },
 ];
 
-List<Map<String, dynamic>> accounts = [
-  {
-    "username": "Shadyar",
-    "email": "shadyar@gmail.com",
-    "password": "12121212",
-    "discount": 0,
-  },
-  {
-    "username": "Aren",
-    "email": "aren@gmail.com",
-    "password": "12121212",
-    "discount": 0,
-  },
-  {
-    "username": "Hevar",
-    "email": "hevar@gmail.com",
-    "password": "12121212",
-    "discount": 0,
-  },
-  {
-    "username": "Arkan",
-    "email": "arkan@gmail.com",
-    "password": "12121212",
-    "discount": 0,
-  },
-];
+// List<Map<String, dynamic>> accounts = [
+//   {
+//     "username": "Shadyar",
+//     "email": "shadyar@gmail.com",
+//     "password": "12121212",
+//     "discount": 0,
+//   },
+//   {
+//     "username": "Aren",
+//     "email": "aren@gmail.com",
+//     "password": "12121212",
+//     "discount": 0,
+//   },
+//   {
+//     "username": "Hevar",
+//     "email": "hevar@gmail.com",
+//     "password": "12121212",
+//     "discount": 0,
+//   },
+//   {
+//     "username": "Arkan",
+//     "email": "arkan@gmail.com",
+//     "password": "12121212",
+//     "discount": 0,
+//   },
+// ];
 
 List<Map<String, dynamic>> basketProducts = [
   {

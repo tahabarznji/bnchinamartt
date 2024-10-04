@@ -95,7 +95,7 @@ class _AcountScreenState extends State<AcountScreen> {
                         text: 'Check Cupon Code',
                         onPressed: () {
                           setState(() {
-                            validateCobon(context, onPop);
+                            // validateCobon(context, onPop);
                           });
                         },
                       ),
@@ -113,41 +113,41 @@ class _AcountScreenState extends State<AcountScreen> {
     );
   }
 
-  void validateCobon(BuildContext context, void Function() onPop) {
-    final bool isValidate = _formKeyy.currentState!.validate();
+  // void validateCobon(BuildContext context, void Function() onPop) {
+  //   final bool isValidate = _formKeyy.currentState!.validate();
 
-    if (!isValidate) {
-      return;
-    }
+  //   if (!isValidate) {
+  //     return;
+  //   }
 
-    _formKeyy.currentState!.save();
-    bool isAvalibleCobon = false;
+  //   _formKeyy.currentState!.save();
+  //   bool isAvalibleCobon = false;
 
-    for (var cubon in coubons) {
-      if (cubon["code"] == cobonCode) {
-        currentUser["discount"] == cubon["discount"];
+  //   for (var cubon in coubons) {
+  //     if (cubon["code"] == cobonCode) {
+  //       currentUser["discount"] == cubon["discount"];
 
-        for (var user in accounts) {
-          if (user['email'] == currentUser['email']) {
-            user["discount"] = cubon["discount"];
-          }
-        }
+  //       for (var user in accounts) {
+  //         if (user['email'] == currentUser['email']) {
+  //           user["discount"] = cubon["discount"];
+  //         }
+  //       }
 
-        isAvalibleCobon = true;
-        coubons.remove(cubon);
+  //       isAvalibleCobon = true;
+  //       coubons.remove(cubon);
 
-        break;
-      }
-    }
+  //       break;
+  //     }
+  //   }
 
-    if (!isAvalibleCobon) {
-      addsnackbar(context, 'Invaild cobon code');
-    } else {
-      addsnackbar(context, 'You get your discount secufuly');
-    }
+  //   if (!isAvalibleCobon) {
+  //     addsnackbar(context, 'Invaild cobon code');
+  //   } else {
+  //     addsnackbar(context, 'You get your discount secufuly');
+  //   }
 
-    onPop();
-  }
+  //   onPop();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -239,8 +239,8 @@ class _AcountScreenState extends State<AcountScreen> {
           CoustomeTile(
             icon: signoutIcon,
             text: 'Sign out',
-            onTap: () {
-              signOut();
+            onTap: () async {
+              await signOut();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -256,7 +256,6 @@ class _AcountScreenState extends State<AcountScreen> {
             icon: signoutIcon,
             text: 'admin panel',
             onTap: () {
-              signOut();
               Navigator.push(
                 context,
                 MaterialPageRoute(

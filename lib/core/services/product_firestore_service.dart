@@ -6,22 +6,22 @@ import 'package:firebase_storage/firebase_storage.dart';
 class ProductFirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<void> addUser(ProductDataModel productDateModel) async {
+  Future<void> addProduct(ProductDataModel productDateModel) async {
     var refrence = _db.collection('products').doc(productDateModel.id);
     await refrence.set(productDateModel.toFirestore());
   }
 
-  Future<void> deleteUser(String id) async {
+  Future<void> deleteProduct(String id) async {
     var refrence = _db.collection('products').doc(id);
     await refrence.delete();
   }
 
-  Future<void> updateUser(ProductDataModel productDateModel) async {
+  Future<void> updateProduct(ProductDataModel productDateModel) async {
     var refrence = _db.collection('products').doc(productDateModel.id);
     await refrence.update(productDateModel.toFirestore());
   }
 
-  Future<ProductDataModel?> getUser(String id) async {
+  Future<ProductDataModel?> getPruduct(String id) async {
     var refrence = _db.collection('products').doc(id);
     var doc = await refrence.get();
     if (doc.exists) {

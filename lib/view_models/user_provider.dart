@@ -2,7 +2,13 @@ import 'package:bnchinamartt/models/user_data_model.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider with ChangeNotifier {
-  UserDataModel _userDataModel = UserDataModel();
+  UserDataModel _userDataModel = UserDataModel(
+      email: '',
+      governance: '',
+      id: '',
+      isAdmin: false,
+      name: '',
+      porfilePicture: '');
 
   UserDataModel get getUserDataModel => _userDataModel;
 
@@ -16,6 +22,7 @@ class UserProvider with ChangeNotifier {
     _userDataModel = UserDataModel(
       email: '',
       id: '',
+      porfilePicture: '',
       name: '',
       governance: '',
       isAdmin: false,

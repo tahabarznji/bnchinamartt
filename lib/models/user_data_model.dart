@@ -1,49 +1,41 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserDataModel {
-  String? id;
-  String? name;
-  String? email;
-  bool? isAdmin;
-  String? porfilePicture;
-  String? governance;
-  List<String>? orders;
+  final String? id;
+  final String? name;
+  final String? email;
+  final bool? isAdmin;
+  final String? porfilePicture;
+  final String? governance;
 
-  UserDataModel({
-    this.name,
-    this.email,
-    this.isAdmin,
-    this.porfilePicture,
-    this.id,
-    this.governance,
-    this.orders,
+  const UserDataModel({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.isAdmin,
+    required this.porfilePicture,
+    required this.governance,
   });
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'name': name});
-    result.addAll({'email': email});
-    result.addAll({'isAdmin': isAdmin});
-    result.addAll({'porfilePicture': porfilePicture});
-    result.addAll({'id': id});
-    result.addAll({'governance': governance});
-    if (orders != null) {
-      result.addAll({'orders': orders});
-    }
-
-    return result;
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'isAdmin': isAdmin,
+      'porfilePicture': porfilePicture,
+      'governance': governance,
+    };
   }
 
   factory UserDataModel.fromMap(Map<String, dynamic> map) {
     return UserDataModel(
-      name: map['name'] ?? '',
-      email: map['email'] ?? '',
-      isAdmin: map['isAdmin'] ?? false,
-      porfilePicture: map['porfilePicture'] ?? '',
-      id: map['id'] ?? '',
-      governance: map['governance'] ?? '',
-      orders: map['orders'] != null ? List<String>.from(map['orders']) : null,
+      id: map['id'] as String,
+      name: map['name'] as String,
+      email: map['email'] as String,
+      isAdmin: map['isAdmin'] as bool,
+      porfilePicture: map['porfilePicture'] as String,
+      governance: map['governance'] as String,
     );
   }
 
@@ -51,27 +43,35 @@ class UserDataModel {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return UserDataModel.fromMap(data);
   }
-
   Map<String, dynamic> toFirestore() {
-    return toMap();
+    return {
+      'id': id,
+      'email': email,
+      'name': name,
+      'porfilePicture': porfilePicture,
+      'governance': governance,
+      'isAdmin': isAdmin,
+    };
   }
 
-  // The copyWith method
+  // Map<String, dynamic> toFirestore() {
+  //   return toMap();
+  // }
+
   UserDataModel copyWith({
     String? name,
     String? email,
     bool? isAdmin,
     String? profilePicture,
     String? governance,
-    List<String>? orders,
   }) {
     return UserDataModel(
-      id: this.id, // Keeping the same ID; excluded from being modified
+      id: id, // Keeping the same ID; excluded from being modified
       name: name ?? this.name,
+      porfilePicture: profilePicture ?? this.porfilePicture,
       email: email ?? this.email,
       isAdmin: isAdmin ?? this.isAdmin,
       governance: governance ?? this.governance,
-      orders: orders ?? this.orders,
     );
   }
 }

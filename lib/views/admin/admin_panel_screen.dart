@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:bnchinamartt/core/services/firebase_storage_service.dart';
 import 'package:bnchinamartt/core/services/image_picker_service.dart';
+import 'package:bnchinamartt/core/services/product_firestore_service.dart';
 import 'package:bnchinamartt/models/product_data_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,6 +26,8 @@ class _AdminPanelState extends State<AdminPanelScreen> {
     'Greens',
   ];
   String? _selectedCategory;
+
+  XFile? pickedFile;
 
   @override
   Widget build(BuildContext context) {
@@ -104,23 +111,31 @@ class _AdminPanelState extends State<AdminPanelScreen> {
                     return null;
                   },
                 ),
+                if (pickedFile != null) Image.file(File(pickedFile!.path)),
                 ElevatedButton(
                   child: const Text('Pick Image'),
-                  onPressed: () {
-                    ImageService.pickSingleImage();
+                  onPressed: () async {
+                    pickedFile = await ImageService.pickSingleImage();
+                    setState(() {});
                   },
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // final product = ProductDataModel(
-                      //   category: _selectedCategory!,
-                      //   price: double.parse(_priceController.text).toString(),
-                      //   name: _nameController.text,
-                      //   description: _descriptionController.text,
-                      // );
-                      // FirestoreService().addProduct(product);
-                      Navigator.of(context).pop();
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate() &&
+                        pickedFile != null) {
+                      final downlodUrl = await FirebaseStorageService()
+                          .uploadFile(File(pickedFile!.path),
+                              fileName: 'Products');
+                      final product = ProductDataModel(
+                          id: '',
+                          name: _nameController.text,
+                          imgPath: downlodUrl,
+                          category: _selectedCategory ?? '',
+                          price: double.tryParse(_priceController.text) ?? 0,
+                          foodDetails: _descriptionController.text);
+                      ProductFirestoreService().addProduct(product);
+
+                      // Navigator.of(context).pop();
                     }
                   },
                   child: Text('Add Product'),
