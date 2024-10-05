@@ -6,9 +6,16 @@ import 'package:firebase_storage/firebase_storage.dart';
 class ProductFirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
+  // Future<void> addProduct(ProductDataModel productDateModel) async {
+  //   var refrence = _db.collection('products').doc();
+  //   await refrence
+  //       .set(productDateModel.copyWith(id: refrence.id).toFirestore());
+  // }
   Future<void> addProduct(ProductDataModel productDateModel) async {
-    var refrence = _db.collection('products').doc(productDateModel.id);
-    await refrence.set(productDateModel.toFirestore());
+    var reference = _db.collection('products').doc(); // Generates a new ID
+    await reference.set(productDateModel
+        .copyWith(id: reference.id)
+        .toFirestore()); // Updates the product model with the generated ID
   }
 
   Future<void> deleteProduct(String id) async {

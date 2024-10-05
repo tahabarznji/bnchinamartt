@@ -46,4 +46,22 @@ class ProductDataModel {
   Map<String, dynamic> toFirestore() {
     return toMap();
   }
+
+  ProductDataModel copyWith({
+    String? id,
+    String? name,
+    String? imgPath,
+    String? category,
+    double? price,
+    String? foodDetails,
+  }) {
+    return ProductDataModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      imgPath: imgPath ?? this.imgPath,
+      category: category ?? this.category,
+      price: price ?? this.price,
+      foodDetails: foodDetails ?? this.foodDetails,
+    );
+  }
 }
