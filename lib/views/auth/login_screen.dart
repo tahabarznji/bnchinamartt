@@ -1,3 +1,4 @@
+import 'package:bnchinamartt/core/widgets/custom_text_field.dart';
 import 'package:bnchinamartt/view_models/user_provider.dart';
 import 'package:bnchinamartt/views/product/layout_screen.dart';
 import 'package:bnchinamartt/views/auth/sign_up_screen.dart';
@@ -23,14 +24,14 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late UserProvider userProvider;
   bool isLoading = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwrodController = TextEditingController();
   @override
   void initState() {
     userProvider = Provider.of(context, listen: false);
     super.initState();
   }
 
-  String? email;
-  String? password;
   // dabe form state be nak form agadart ba
   final _formKey = GlobalKey<FormState>();
 
@@ -44,7 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     try {
       final UserCredential userCredential = await AuthService()
-          .signInWithEmailAndPassword(email: email!, password: password!);
+          .signInWithEmailAndPassword(
+              email: _emailController.text, password: _passwrodController.text);
       if (userCredential == null) {
         debugPrint('User credintial is wrong');
         setState(() {
@@ -116,28 +118,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      CustomeTextFiled(
-                        icon: emailIcon,
-                        text: 'Email',
-                        keybordtype: TextInputType.emailAddress,
-                        onValidate: validatorEmail,
-                        onSaved: (newVlaue) => email = newVlaue,
-                      ),
+                      CustomTextField(
+                          controller: _emailController,
+                          hintText: 'Email',
+                          iconPath: emailIcon,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: validatorEmail),
                       const SizedBox(
                         height: 20,
                       ),
-                      CustomeTextFiled(
-                        text: 'Password',
-                        icon: passwordIcon,
-                        onValidate: validatorPassword,
-                        onSaved: (newVlaue) => password = newVlaue,
-                        isObsecure: true,
-                      ),
+                      CustomTextField(
+                          controller: _passwrodController,
+                          hintText: 'Password',
+                          isObsecure: true,
+                          iconPath: passwordIcon,
+                          validator: validatorPassword),
                       const SizedBox(
                         height: 20,
                       ),
                       if (isLoading == true) ...{
-                        CircularProgressIndicator(),
+                        const CircularProgressIndicator(),
                       } else
                         CustomButton(
                           text: 'Login',
