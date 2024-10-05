@@ -1,12 +1,13 @@
+import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:bnchinamartt/views/product_detail_screen.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/funtions.dart';
 import 'package:flutter/material.dart';
 
-class VerticalProductCard extends StatelessWidget {
-  VerticalProductCard({super.key, required this.product});
+class TrendingProductCard extends StatelessWidget {
+  const TrendingProductCard({super.key, required this.product});
 
-  Map<String, dynamic> product;
+  final ProductDataModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +37,18 @@ class VerticalProductCard extends StatelessWidget {
               child: Stack(
                 children: [
                   Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Image.asset(
-                      product['imgPath'],
+                    alignment: Alignment.center,
+                    // child: Image.asset(
+                    //   product.imgPath,
+                    //   // product['imgPath'],
+                    //   height: 70,
+                    //   fit: BoxFit.contain,
+                    // ),
+                    child: Image.network(
+                      product.imgPath,
+                      // product['imgPath'],
                       height: 70,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   Positioned(
@@ -69,14 +77,14 @@ class VerticalProductCard extends StatelessWidget {
               ),
             ),
             Text(
-              product['name'],
+              product.name,
               style: TextStyle(
                   color: textColor, fontSize: 15, fontWeight: FontWeight.w900),
             ),
             Row(
               children: [
                 Text(
-                  '${product['price']}',
+                  '${product.price}',
                   style: TextStyle(
                       color: textColor,
                       fontSize: 12,

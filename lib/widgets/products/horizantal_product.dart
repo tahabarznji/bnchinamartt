@@ -1,3 +1,4 @@
+import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:bnchinamartt/views/product_detail_screen.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/funtions.dart';
@@ -6,10 +7,12 @@ import 'package:flutter/material.dart';
 class HorizantalProductCard extends StatelessWidget {
   const HorizantalProductCard({
     super.key,
-    required this.product,
+    // required this.product,
+    required this.productDataModel,
   });
 
-  final Map<String, dynamic> product;
+  // final Map<String, dynamic> product;
+  final ProductDataModel productDataModel;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,7 +20,8 @@ class HorizantalProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailScreen(product: product),
+            builder: (context) =>
+                ProductDetailScreen(product: productDataModel),
           ),
         );
       },
@@ -42,12 +46,15 @@ class HorizantalProductCard extends StatelessWidget {
                 ),
                 height: 90,
                 child: Center(
-                  child: Image.asset(
-                    product["imgPath"],
-                    width: 70,
-                    height: 70,
-                    fit: BoxFit.contain,
-                  ),
+                  // child: Image.asset(
+                  //   // product["imgPath"],
+                  //   productDataModel.imgPath,
+                  //   width: 70,
+                  //   height: 70,
+                  //   fit: BoxFit.contain,
+                  // ),
+                  child: Image.network(productDataModel.imgPath,
+                      width: 70, height: 70, fit: BoxFit.contain),
                 ),
               ),
               const SizedBox(
@@ -58,14 +65,16 @@ class HorizantalProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product["name"],
+                      // product["name"],
+                      productDataModel.name,
                       style: TextStyle(
                           fontSize: 20,
                           color: textColor,
                           fontWeight: FontWeight.w900),
                     ),
                     Text(
-                      product["details"],
+                      // product["details"],
+                      productDataModel.foodDetails ?? '',
                       style: TextStyle(
                           fontSize: 15,
                           color: darkGreyColor,
@@ -74,7 +83,8 @@ class HorizantalProductCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          ' ${product['price']} ',
+                          productDataModel.price.toString(),
+                          // ' ${product['price']} ',
                           style: TextStyle(
                               color: textColor,
                               fontSize: 12,
@@ -93,13 +103,13 @@ class HorizantalProductCard extends StatelessWidget {
                 ),
               ),
               FloatingActionButton.small(
-                heroTag: '${product['imgPath']} Column',
+                heroTag: '${productDataModel.name} Column',
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(19),
                 ),
                 onPressed: () {
-                  addToBasked(context, product);
+                  // addToBasked(context, product);
                 },
                 child: Icon(
                   Icons.add,

@@ -1,5 +1,6 @@
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/funtions.dart';
+import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:bnchinamartt/widgets/category/category_box.dart';
 import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({super.key, required this.product});
 
-  final Map<String, dynamic> product;
+  final ProductDataModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +31,27 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   alignment: Alignment.center,
                   width: double.infinity,
-                  child: Image.asset(
-                    product['imgPath'],
-                    height: 150,
-                    width: 150,
-                  ),
+                  // child: Image.asset(
+                  //   // product['imgPath'],
+                  //   product.imgPath,
+                  //   height: 150,
+                  //   width: 150,
+                  // ),
+                  child:
+                      Image.network(product.imgPath, height: 150, width: 150),
                 ),
               ),
               const SizedBox(
                 height: 5,
               ),
               Row(
-                children: [CategoryBox(category: product['category'])],
+                children: [CategoryBox(category: product.category)],
               ),
               const SizedBox(
                 height: 5,
               ),
               Text(
-                product['name'],
+                product.name,
                 style: TextStyle(
                     fontSize: 25,
                     color: textColor,
@@ -57,7 +61,7 @@ class ProductDetailScreen extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                product['details'],
+                product.foodDetails,
                 style: TextStyle(
                     fontSize: 12,
                     color: textColor,
@@ -70,7 +74,7 @@ class ProductDetailScreen extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '${product['price']}',
+                      text: '${product.price}',
                       style: TextStyle(
                           color: textColor,
                           fontSize: 22,

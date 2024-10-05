@@ -22,6 +22,7 @@ class _AdminPanelState extends State<AdminPanelScreen> {
   final _priceController = TextEditingController();
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
+  bool isTrending = false;
   List<String> productCategories = [
     'Milk',
     'Meat',
@@ -50,6 +51,7 @@ class _AdminPanelState extends State<AdminPanelScreen> {
           id: '',
           name: _nameController.text,
           imgPath: downlodUrl,
+          isTrending: isTrending,
           category: _selectedCategory ?? '',
           price: double.tryParse(_priceController.text) ?? 0,
           foodDetails: _descriptionController.text);
@@ -123,6 +125,20 @@ class _AdminPanelState extends State<AdminPanelScreen> {
                   validator: (value) {
                     return null;
                   },
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: isTrending,
+                      activeColor: primaryColor,
+                      onChanged: (value) {
+                        setState(() {
+                          isTrending = value!;
+                        });
+                      },
+                    ),
+                    const Text('dose this product is trending ?'),
+                  ],
                 ),
                 if (pickedFile != null) Image.file(File(pickedFile!.path)),
                 const SizedBox(

@@ -7,6 +7,7 @@ class ProductDataModel {
   final String category;
   final double price;
   final String foodDetails;
+  final bool isTrending;
 
   ProductDataModel({
     required this.id,
@@ -15,6 +16,7 @@ class ProductDataModel {
     required this.category,
     required this.price,
     required this.foodDetails,
+    this.isTrending = false,
   });
 
   factory ProductDataModel.fromMap(Map<String, dynamic> map) {
@@ -25,6 +27,7 @@ class ProductDataModel {
       category: map['category'],
       price: map['price'].toDouble(),
       foodDetails: map['foodDetails'],
+      isTrending: map['isTrending'] ?? false,
     );
   }
 
@@ -40,6 +43,7 @@ class ProductDataModel {
       'category': category,
       'price': price,
       'foodDetails': foodDetails,
+      'isTrending': isTrending,
     };
   }
 
@@ -54,6 +58,7 @@ class ProductDataModel {
     String? category,
     double? price,
     String? foodDetails,
+    bool? isTrending,
   }) {
     return ProductDataModel(
       id: id ?? this.id,
@@ -62,6 +67,7 @@ class ProductDataModel {
       category: category ?? this.category,
       price: price ?? this.price,
       foodDetails: foodDetails ?? this.foodDetails,
+      isTrending: isTrending ?? this.isTrending,
     );
   }
 }
