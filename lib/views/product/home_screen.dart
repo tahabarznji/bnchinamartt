@@ -4,7 +4,7 @@ import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/widgets/products/horizantal_product.dart';
 import 'package:bnchinamartt/widgets/products/horizantal_product_card.dart';
 import 'package:bnchinamartt/widgets/category/category_list.dart';
-import 'package:bnchinamartt/widgets/products/vertical_product_list.dart';
+import 'package:bnchinamartt/widgets/products/trending_product_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,5 @@
-import 'package:bnchinamartt/core/utils/data.dart';
 import 'package:bnchinamartt/models/product_data_model.dart';
-import 'package:bnchinamartt/widgets/products/horizantal_product.dart';
+
 import 'package:bnchinamartt/widgets/products/trending_product_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +29,11 @@ class _TrendingProductListState extends State<TrendingProductList> {
         if (snapshot.hasData && snapshot.data!.docs.isEmpty) {
           return const Text('No products found');
         }
-        // return HorizantalProductList();
-        // return const Text('It works');
-        final products = snapshot.data!.docs;
+
+        final products = snapshot.data!.docs.where((element) {
+          final product = ProductDataModel.fromFirestore(element);
+          return product.isTrending;
+        }).toList();
         return ListView.builder(
           itemCount: products.length,
           shrinkWrap: true,
@@ -42,8 +43,6 @@ class _TrendingProductListState extends State<TrendingProductList> {
             final product = ProductDataModel.fromFirestore(products[index]);
             return TrendingProductCard(
               product: product,
-              // productDataModel: product,
-              // product: product.toMap(),
             );
           },
         );
