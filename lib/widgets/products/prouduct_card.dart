@@ -1,15 +1,30 @@
 import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.listViewProduct});
-  final Map<String, dynamic> listViewProduct;
+  const ProductCard({super.key, required this.productDataModel});
+  // final Map<String, dynamic> listViewProduct;
+  final ProductDataModel productDataModel;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 2),
-      color: whiteColor,
+      decoration: BoxDecoration(
+        color: Colors.white, // Background color of the container
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2), // Shadow color with opacity
+            spreadRadius: 1, // How far the shadow spreads
+            blurRadius: 3, // Softening the edges of the shadow
+            offset: const Offset(
+                0, 3), // Horizontal and vertical offset of the shadow
+          ),
+        ],
+        borderRadius:
+            BorderRadius.circular(10), // Optional: rounding the corners
+      ),
       width: 100,
       height: 200,
       child: Column(
@@ -25,8 +40,8 @@ class ProductCard extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.center,
-                    child: Image.asset(
-                      listViewProduct['imgPath'],
+                    child: Image.network(
+                      productDataModel.imgPath,
                       height: 90,
                       fit: BoxFit.contain,
                     ),
@@ -38,7 +53,7 @@ class ProductCard extends StatelessWidget {
                       height: 30,
                       width: 30,
                       child: FloatingActionButton.small(
-                        heroTag: '${listViewProduct['imgPath']} product',
+                        heroTag: '${productDataModel.imgPath} product',
                         backgroundColor: primaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(19),
@@ -56,14 +71,14 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Text(
-            listViewProduct['name'],
+            productDataModel.name,
             style: TextStyle(
                 color: textColor, fontSize: 15, fontWeight: FontWeight.w900),
           ),
           Row(
             children: [
               Text(
-                '${listViewProduct['price']}',
+                '${productDataModel.price}',
                 style: TextStyle(
                     color: textColor,
                     fontSize: 12,
