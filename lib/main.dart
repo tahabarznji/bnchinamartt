@@ -1,3 +1,4 @@
+import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:bnchinamartt/view_models/user_provider.dart';
 import 'package:bnchinamartt/views/auth/login_screen.dart';
 import 'package:bnchinamartt/widget_tree.dart';
@@ -13,8 +14,13 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => UserProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(
+          create: (context) => BasketProductProvider(),
+        ),
+      ],
       child: const BnchinaMartApp(),
     ),
   );

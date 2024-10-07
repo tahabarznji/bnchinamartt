@@ -1,8 +1,10 @@
 import 'package:bnchinamartt/models/product_data_model.dart';
+import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:bnchinamartt/views/product_detail_screen.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/funtions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HorizantalProductCard extends StatelessWidget {
   const HorizantalProductCard({
@@ -15,6 +17,8 @@ class HorizantalProductCard extends StatelessWidget {
   final ProductDataModel productDataModel;
   @override
   Widget build(BuildContext context) {
+    BasketProductProvider basketProductProvider =
+        Provider.of<BasketProductProvider>(context, listen: false);
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -109,6 +113,7 @@ class HorizantalProductCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(19),
                 ),
                 onPressed: () {
+                  basketProductProvider.addProduct(productDataModel);
                   // addToBasked(context, product);
                 },
                 child: Icon(
