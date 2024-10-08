@@ -103,7 +103,7 @@ class _BasketScreenState extends State<BasketScreen> {
 
                   order = order.copyWith(orderId: orderRef.id);
 
-                  await orderRef.set(order.toMap());
+                  await orderRef.set(order.toFirestore());
 
                   basketProductProvider.clear();
 

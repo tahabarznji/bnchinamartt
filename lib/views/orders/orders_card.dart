@@ -1,4 +1,5 @@
 import 'package:bnchinamartt/core/utils/colors.dart';
+import 'package:bnchinamartt/models/order_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -6,7 +7,8 @@ DateFormat formater = DateFormat.yMd();
 
 class OrdersCard extends StatelessWidget {
   const OrdersCard({super.key, required this.order});
-  final Map<String, dynamic> order;
+  // final Map<String, dynamic> order;
+  final OrderDataModel order;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,7 +42,7 @@ class OrdersCard extends StatelessWidget {
                         width: 10,
                       )),
                       TextSpan(
-                        text: order['orderID'].toString(),
+                        text: order.orderId.toString(),
                         style: TextStyle(
                             color: textColor,
                             fontSize: 15,
@@ -49,20 +51,20 @@ class OrdersCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(
-                  formater.format(order['date']).toString(),
-                  style: TextStyle(
-                      color: textColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
+                // Text(
+                //   formater.format(order.orderTime as DateTime).toString(),
+                //   style: TextStyle(
+                //       color: textColor,
+                //       fontSize: 15,
+                //       fontWeight: FontWeight.bold),
+                // ),
               ],
             ),
             SizedBox(
               height: 150,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: order["data"].length,
+                itemCount: order.products.length,
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.all(4),
                   child: Container(
@@ -76,8 +78,8 @@ class OrdersCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          child: Image.asset(
-                            order["data"][index]["imgPath"],
+                          child: Image.network(
+                            order.products[index].imgPath,
                             fit: BoxFit.cover,
                             height: 75,
                           ),
@@ -101,13 +103,14 @@ class OrdersCard extends StatelessWidget {
                                 text: TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: order["data"][index]["name"],
+                                      text:
+                                          order.products[index].name.toString(),
                                       style: TextStyle(
                                           color: greyColor,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     TextSpan(
-                                        text: order["data"][index]["quantity"]
+                                        text: order.products[index].quantity
                                             .toString(),
                                         style: TextStyle(
                                             color: greyColor,
@@ -124,8 +127,7 @@ class OrdersCard extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    order["data"][index]["totalPrice"]
-                                        .toString(),
+                                    order.products[index].totalPrice.toString(),
                                     style: TextStyle(
                                         color: greyColor,
                                         fontWeight: FontWeight.bold),
@@ -167,7 +169,7 @@ class OrdersCard extends StatelessWidget {
                       width: 2,
                     )),
                     TextSpan(
-                      text: order["totalPrice"].toString(),
+                      text: 'Fix the total price',
                       style: TextStyle(
                           color: textColor,
                           fontSize: 23,
