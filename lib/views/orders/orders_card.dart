@@ -34,7 +34,7 @@ class OrdersCard extends StatelessWidget {
                         text: 'Order ID:',
                         style: TextStyle(
                             color: darkGreyColor,
-                            fontSize: 15,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold),
                       ),
                       const WidgetSpan(
@@ -45,19 +45,19 @@ class OrdersCard extends StatelessWidget {
                         text: order.orderId.toString(),
                         style: TextStyle(
                             color: textColor,
-                            fontSize: 15,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                 ),
-                // Text(
-                //   formater.format(order.orderTime as DateTime).toString(),
-                //   style: TextStyle(
-                //       color: textColor,
-                //       fontSize: 15,
-                //       fontWeight: FontWeight.bold),
-                // ),
+                Text(
+                  formater.format(order.orderTime.toDate()).toString(),
+                  style: TextStyle(
+                      color: textColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
               ],
             ),
             SizedBox(
@@ -77,12 +77,10 @@ class OrdersCard extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          child: Image.network(
-                            order.products[index].imgPath,
-                            fit: BoxFit.cover,
-                            height: 75,
-                          ),
+                        Image.network(
+                          order.products[index].imgPath,
+                          fit: BoxFit.cover,
+                          height: 75,
                         ),
                         Container(
                           height: 60,
@@ -127,7 +125,9 @@ class OrdersCard extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    order.products[index].totalPrice.toString(),
+                                    order.products[index].totalPrice
+                                        .ceil()
+                                        .toString(),
                                     style: TextStyle(
                                         color: greyColor,
                                         fontWeight: FontWeight.bold),
@@ -169,7 +169,7 @@ class OrdersCard extends StatelessWidget {
                       width: 2,
                     )),
                     TextSpan(
-                      text: 'Fix the total price',
+                      text: order.totalAmount.ceil().toString(),
                       style: TextStyle(
                           color: textColor,
                           fontSize: 23,

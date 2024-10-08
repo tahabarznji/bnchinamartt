@@ -46,7 +46,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   if (snapshot.hasError) {
                     return const Text('Something went wrong');
                   }
-                  final orders = snapshot.data!.docs;
+                  final orders = snapshot.data!.docs.reversed.toList();
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
