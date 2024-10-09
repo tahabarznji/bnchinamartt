@@ -1,10 +1,13 @@
+import 'package:bnchinamartt/core/services/auth_service.dart';
 import 'package:bnchinamartt/core/utils/assets.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/data.dart';
 import 'package:bnchinamartt/core/utils/validators.dart';
 import 'package:bnchinamartt/core/widgets/custom_button.dart';
+import 'package:bnchinamartt/core/widgets/custom_text_field.dart';
 import 'package:bnchinamartt/core/widgets/custume_text_filed.dart';
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ChangePassWordScreen extends StatefulWidget {
@@ -16,27 +19,63 @@ class ChangePassWordScreen extends StatefulWidget {
 
 class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _currentPasswordController =
+      TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  String? errorMassage;
+  bool isLoading = false;
 
-  String? newPass = '';
-
-  // void onSave(BuildContext context) {
-  //   final isValidate = _formKey.currentState!.validate();
-  //   if (!isValidate) {
-  //     return;
-  //   }
-  //   _formKey.currentState!.save();
-
-  //   if (isValidate) {
-  //     for (var account in accounts) {
-  //       if (account['username'] == currentUser["username"] &&
-  //           account["email"] == currentUser["email"]) {
-  //         account["password"] = newPass;
-  //       }
+  // Future<void> changePasswordWithCurrentPasswrod(
+  //     String currentPassword, String newPassowrd) async {
+  //   try {
+  //     User? user = FirebaseAuth.instance.currentUser;
+  //     if (user != null) {
+  //       AuthCredential credential = EmailAuthProvider.credential(
+  //           email: user.email!, password: _currentPasswordController.text);
+  //       await user.reauthenticateWithCredential(credential);
+  //       await user.updatePassword(_newPasswordController.text);
+  //     } else {
+  //       print('No user currenttly loged in');
   //     }
-  //     addsnackbar(context, "Your password is updated");
+  //   } catch (error) {
+  //     if (error is FirebaseAuthException && error.code == 'wrong-password') {
+  //       setState(() {
+  //         errorMassage = 'The password is invalid.';
+  //       });
+  //     }
+
+  //     print('sorry we got an error');
   //   }
-  //   Navigator.pop(context);
   // }
+  // Future<void> changePasswordWithCurrentPasswrod() async {
+  //   try {
+  //     User? user = FirebaseAuth.instance.currentUser;
+  //     if (user != null) {
+  //       AuthCredential credential = EmailAuthProvider.credential(
+  //           email: user.email!, password: _currentPasswordController.text);
+  //       await user.reauthenticateWithCredential(credential);
+  //       await user.updatePassword(_newPasswordController.text);
+  //     } else {
+  //       print('No user currenttly loged in');
+  //     }
+  //   } catch (error) {
+  //     if (error is FirebaseAuthException) {
+  //       // Handle Firebase specific errors like invalid credentials
+
+  //       setState(() {
+  //         errorMassage = 'The password is invalid.';
+  //       });
+  //     }
+  //   }
+  // }
+
+  void onChanged(String value) {
+    setState(() {
+      if (errorMassage != null) {
+        errorMassage = null;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +91,7 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Image.asset(keyy),
                 Text(
@@ -65,37 +104,59 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                 const SizedBox(
                   height: 50,
                 ),
-                CustomeTextFiled(
-                  text: 'Current password',
-                  icon: passwordIcon,
-                  onValidate: (validate) {
-                    // if (validate == currentUser["password"]) {
-                    //   return null;
-                    // }
-                    return 'Your password is not correct';
-                  },
-                  onSaved: (newVlaue) {},
+                CustomTextField(
                   isObsecure: true,
+                  controller: _currentPasswordController,
+                  hintText: 'Current password',
+                  errorMassage: errorMassage,
+                  iconPath: passwordIcon,
+                  validator: validatorPassword,
+                  onChanged: onChanged,
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                CustomeTextFiled(
-                  text: 'New password',
-                  icon: passwordIcon,
-                  onValidate: validatorPassword,
-                  onSaved: (newVlaue) => newPass = newVlaue,
+                CustomTextField(
+                  controller: _newPasswordController,
+                  hintText: 'New password',
+                  errorMassage: errorMassage,
+                  iconPath: passwordIcon,
                   isObsecure: true,
+                  onChanged: onChanged,
+                  validator: validatorPassword,
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                CustomButton(
-                  text: 'Update password',
-                  onPressed: () {
-                    // onSave(context);
-                  },
+                const SizedBox(
+                  height: 15,
                 ),
+                if (isLoading) ...{
+                  const CircularProgressIndicator(),
+                } else ...{
+                  CustomButton(
+                    text: 'Update password',
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      errorMassage = await AuthService()
+                          .changePasswordWithCurrentPassword(
+                              currentPassword: _currentPasswordController.text,
+                              newPassword: _newPasswordController.text);
+                      if (errorMassage == null) {
+                        addsnackbar(
+                            context, 'The password is update scussfully');
+                      }
+                      setState(() {
+                        isLoading = false;
+                      });
+
+                      _currentPasswordController.clear();
+                      _newPasswordController.clear();
+                    },
+                  ),
+                }
               ],
             ),
           ),

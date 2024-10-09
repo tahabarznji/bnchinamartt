@@ -60,16 +60,20 @@ class _AdminPanelState extends State<AdminPanelScreen> {
           price: double.tryParse(_priceController.text) ?? 0,
           foodDetails: _descriptionController.text);
       await ProductFirestoreService().addProduct(product);
+      _clearFields();
 
-      _nameController.clear();
-      _priceController.clear();
-      _descriptionController.clear();
-      _formKey.currentState?.reset();
-      pickedFile = null;
       setState(() {
         isLoading = false;
       });
     }
+  }
+
+  void _clearFields() {
+    _nameController.clear();
+    _priceController.clear();
+    _descriptionController.clear();
+    _formKey.currentState?.reset();
+    pickedFile = null;
   }
 
   @override
@@ -94,30 +98,31 @@ class _AdminPanelState extends State<AdminPanelScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    hintText: 'Select category',
-                    hintStyle: TextStyle(fontSize: 12, color: darkGreyColor),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 15),
-                    filled: true,
-                    fillColor: greyColor,
-                  ),
-                  value: _selectedCategory,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selectedCategory = newValue;
-                    });
-                  },
-                  items: productCategories
-                      .map((category) => DropdownMenuItem<String>(
-                          value: category, child: Text(category)))
-                      .toList(),
-                ),
+                _buildCategoryDropdown(),
+                // DropdownButtonFormField<String>(
+                //   decoration: InputDecoration(
+                //     hintText: 'Select category',
+                //     hintStyle: TextStyle(fontSize: 12, color: darkGreyColor),
+                //     border: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(8),
+                //       borderSide: BorderSide.none,
+                //     ),
+                //     contentPadding: const EdgeInsets.symmetric(
+                //         horizontal: 20, vertical: 15),
+                //     filled: true,
+                //     fillColor: greyColor,
+                //   ),
+                //   value: _selectedCategory,
+                //   onChanged: (String? newValue) {
+                //     setState(() {
+                //       _selectedCategory = newValue;
+                //     });
+                //   },
+                //   items: productCategories
+                //       .map((category) => DropdownMenuItem<String>(
+                //           value: category, child: Text(category)))
+                //       .toList(),
+                // ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -139,20 +144,21 @@ class _AdminPanelState extends State<AdminPanelScreen> {
                     return null;
                   },
                 ),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: isTrending,
-                      activeColor: primaryColor,
-                      onChanged: (value) {
-                        setState(() {
-                          isTrending = value!;
-                        });
-                      },
-                    ),
-                    const Text('dose this product is trending ?'),
-                  ],
-                ),
+                _buildTrendingCheckbox(),
+                // Row(
+                //   children: [
+                //     Checkbox(
+                //       value: isTrending,
+                //       activeColor: primaryColor,
+                //       onChanged: (value) {
+                //         setState(() {
+                //           isTrending = value!;
+                //         });
+                //       },
+                //     ),
+                //     const Text('dose this product is trending ?'),
+                //   ],
+                // ),
                 if (pickedFile != null) Image.file(File(pickedFile!.path)),
                 const SizedBox(
                   height: 40,
@@ -164,7 +170,9 @@ class _AdminPanelState extends State<AdminPanelScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                if (isLoading) ...{const CircularProgressIndicator()} else
+                if (isLoading) ...{
+                  const CircularProgressIndicator(),
+                } else
                   CustomButton(
                     text: 'Add product',
                     onPressed: addProduct,
@@ -174,6 +182,43 @@ class _AdminPanelState extends State<AdminPanelScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildCategoryDropdown() {
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        hintText: 'Select Category',
+        hintStyle: TextStyle(fontSize: 12, color: darkGreyColor),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide.none),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        filled: true,
+        fillColor: greyColor,
+      ),
+      value: _selectedCategory,
+      onChanged: (String? newValue) =>
+          setState(() => _selectedCategory = newValue),
+      items: productCategories
+          .map((category) =>
+              DropdownMenuItem(value: category, child: Text(category)))
+          .toList(),
+    );
+  }
+
+  Widget _buildTrendingCheckbox() {
+    return Row(
+      children: [
+        Checkbox(
+          value: isTrending,
+          activeColor: primaryColor,
+          onChanged: (bool? value) =>
+              setState(() => isTrending = value ?? false),
+        ),
+        const Text('Is this product trending?'),
+      ],
     );
   }
 }

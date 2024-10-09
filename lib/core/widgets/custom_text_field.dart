@@ -11,6 +11,8 @@ class CustomTextField extends StatefulWidget {
     this.isPasswordField = false,
     this.isObsecure = false,
     this.keyboardType = TextInputType.text,
+    this.errorMassage,
+    this.onChanged,
   });
   final String hintText;
   final TextEditingController controller;
@@ -19,6 +21,8 @@ class CustomTextField extends StatefulWidget {
   final bool isObsecure;
   final bool isPasswordField;
   final TextInputType keyboardType;
+  final String? errorMassage;
+  final Function(String)? onChanged;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -35,9 +39,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.onChanged,
       controller: widget.controller,
       obscureText: obscureText,
       decoration: InputDecoration(
+        errorText: widget.errorMassage,
+        errorMaxLines: 10,
+        errorStyle: const TextStyle(
+          fontSize: 12,
+        ),
         hintText: widget.hintText,
         hintStyle: TextStyle(fontSize: 12, color: darkGreyColor),
         border: OutlineInputBorder(
