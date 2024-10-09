@@ -10,7 +10,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shortid/shortid.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -29,15 +28,6 @@ class _BasketScreenState extends State<BasketScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // if (basketProducts.isEmpty) {
-    //   return Center(
-    //     child: Text(
-    //       "Your card is Empty !",
-    //       style: TextStyle(
-    //           fontSize: 20, color: primaryColor, fontWeight: FontWeight.bold),
-    //     ),
-    //   );
-    // }
     return Consumer<BasketProductProvider>(
       builder: (context, basketProductProvider, child) {
         return Padding(

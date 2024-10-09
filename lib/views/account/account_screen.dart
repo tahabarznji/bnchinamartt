@@ -252,18 +252,20 @@ class _AcountScreenState extends State<AcountScreen> {
           const Divider(
             height: 0,
           ),
-          CoustomeTile(
-            icon: signoutIcon,
-            text: 'admin panel',
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AdminPanelScreen(),
-                ),
-              );
-            },
-          ),
+          if (userProvider.getUserDataModel.isAdmin == true)
+            CoustomeTile(
+              widgetIcon: const Icon(Icons.ad_units),
+              icon: signoutIcon,
+              text: 'admin panel',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AdminPanelScreen(),
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );
