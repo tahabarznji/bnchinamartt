@@ -22,6 +22,7 @@ class _AdminPanelState extends State<AdminPanelScreen> {
   final _priceController = TextEditingController();
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
+  bool isLoading = false;
   bool isTrending = false;
   List<String> productCategories = [
     'Milk',
@@ -45,6 +46,9 @@ class _AdminPanelState extends State<AdminPanelScreen> {
 
   Future<void> addProduct() async {
     if (_formKey.currentState!.validate() && pickedFile != null) {
+      setState(() {
+        isLoading = true;
+      });
       final downlodUrl = await FirebaseStorageService()
           .uploadFile(File(pickedFile!.path), fileName: 'Products');
       final product = ProductDataModel(
@@ -56,6 +60,15 @@ class _AdminPanelState extends State<AdminPanelScreen> {
           price: double.tryParse(_priceController.text) ?? 0,
           foodDetails: _descriptionController.text);
       await ProductFirestoreService().addProduct(product);
+
+      _nameController.clear();
+      _priceController.clear();
+      _descriptionController.clear();
+      _formKey.currentState?.reset();
+      pickedFile = null;
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -151,10 +164,11 @@ class _AdminPanelState extends State<AdminPanelScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                CustomButton(
-                  text: 'Add product',
-                  onPressed: addProduct,
-                ),
+                if (isLoading) ...{const CircularProgressIndicator()} else
+                  CustomButton(
+                    text: 'Add product',
+                    onPressed: addProduct,
+                  ),
               ],
             ),
           ),
