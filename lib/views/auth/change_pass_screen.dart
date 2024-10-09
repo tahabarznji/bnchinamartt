@@ -25,49 +25,24 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
   String? errorMassage;
   bool isLoading = false;
 
-  // Future<void> changePasswordWithCurrentPasswrod(
-  //     String currentPassword, String newPassowrd) async {
-  //   try {
-  //     User? user = FirebaseAuth.instance.currentUser;
-  //     if (user != null) {
-  //       AuthCredential credential = EmailAuthProvider.credential(
-  //           email: user.email!, password: _currentPasswordController.text);
-  //       await user.reauthenticateWithCredential(credential);
-  //       await user.updatePassword(_newPasswordController.text);
-  //     } else {
-  //       print('No user currenttly loged in');
-  //     }
-  //   } catch (error) {
-  //     if (error is FirebaseAuthException && error.code == 'wrong-password') {
-  //       setState(() {
-  //         errorMassage = 'The password is invalid.';
-  //       });
-  //     }
+  Future<void> updatePassword() async {
+    if (_formKey.currentState!.validate()) return;
+    setState(() {
+      isLoading = true;
+    });
+    errorMassage = await AuthService().changePasswordWithCurrentPassword(
+        currentPassword: _currentPasswordController.text,
+        newPassword: _newPasswordController.text);
+    if (errorMassage == null) {
+      addsnackbar(context, 'The password is update scussfully');
+    }
+    setState(() {
+      isLoading = false;
+    });
 
-  //     print('sorry we got an error');
-  //   }
-  // }
-  // Future<void> changePasswordWithCurrentPasswrod() async {
-  //   try {
-  //     User? user = FirebaseAuth.instance.currentUser;
-  //     if (user != null) {
-  //       AuthCredential credential = EmailAuthProvider.credential(
-  //           email: user.email!, password: _currentPasswordController.text);
-  //       await user.reauthenticateWithCredential(credential);
-  //       await user.updatePassword(_newPasswordController.text);
-  //     } else {
-  //       print('No user currenttly loged in');
-  //     }
-  //   } catch (error) {
-  //     if (error is FirebaseAuthException) {
-  //       // Handle Firebase specific errors like invalid credentials
-
-  //       setState(() {
-  //         errorMassage = 'The password is invalid.';
-  //       });
-  //     }
-  //   }
-  // }
+    _currentPasswordController.clear();
+    _newPasswordController.clear();
+  }
 
   void onChanged(String value) {
     setState(() {
@@ -136,25 +111,7 @@ class _ChangePassWordScreenState extends State<ChangePassWordScreen> {
                 } else ...{
                   CustomButton(
                     text: 'Update password',
-                    onPressed: () async {
-                      setState(() {
-                        isLoading = true;
-                      });
-                      errorMassage = await AuthService()
-                          .changePasswordWithCurrentPassword(
-                              currentPassword: _currentPasswordController.text,
-                              newPassword: _newPasswordController.text);
-                      if (errorMassage == null) {
-                        addsnackbar(
-                            context, 'The password is update scussfully');
-                      }
-                      setState(() {
-                        isLoading = false;
-                      });
-
-                      _currentPasswordController.clear();
-                      _newPasswordController.clear();
-                    },
+                    onPressed: updatePassword,
                   ),
                 }
               ],
