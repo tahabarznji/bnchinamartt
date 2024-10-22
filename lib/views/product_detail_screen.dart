@@ -1,10 +1,12 @@
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/funtions.dart';
 import 'package:bnchinamartt/models/product_data_model.dart';
+import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:bnchinamartt/widgets/category/category_box.dart';
 import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({super.key, required this.product});
@@ -13,6 +15,8 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BasketProductProvider basketProductProvider =
+        Provider.of<BasketProductProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: customAppBar(),
@@ -31,12 +35,6 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   alignment: Alignment.center,
                   width: double.infinity,
-                  // child: Image.asset(
-                  //   // product['imgPath'],
-                  //   product.imgPath,
-                  //   height: 150,
-                  //   width: 150,
-                  // ),
                   child:
                       Image.network(product.imgPath, height: 150, width: 150),
                 ),
@@ -99,7 +97,9 @@ class ProductDetailScreen extends StatelessWidget {
         child: CustomButton(
           text: 'Add to basket',
           onPressed: () {
-            addToBasked(context, product);
+            basketProductProvider.addProduct(product);
+
+            // addToBasked(context, product);
           },
         ),
       ),

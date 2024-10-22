@@ -1,6 +1,8 @@
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/models/product_data_model.dart';
+import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.productDataModel});
@@ -9,6 +11,8 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BasketProductProvider basketProductProvider =
+        Provider.of<BasketProductProvider>(context, listen: false);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       decoration: BoxDecoration(
@@ -58,7 +62,9 @@ class ProductCard extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(19),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          basketProductProvider.addProduct(productDataModel);
+                        },
                         child: Icon(
                           Icons.add,
                           color: whiteColor,

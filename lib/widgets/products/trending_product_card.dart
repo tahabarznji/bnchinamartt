@@ -1,8 +1,10 @@
 import 'package:bnchinamartt/models/product_data_model.dart';
+import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:bnchinamartt/views/product_detail_screen.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
-import 'package:bnchinamartt/core/utils/funtions.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TrendingProductCard extends StatelessWidget {
   const TrendingProductCard({super.key, required this.product});
@@ -11,6 +13,9 @@ class TrendingProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BasketProductProvider basketProductProvider =
+        Provider.of<BasketProductProvider>(context, listen: false);
+
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -64,7 +69,7 @@ class TrendingProductCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(19),
                         ),
                         onPressed: () {
-                          addToBasked(context, product);
+                          basketProductProvider.addProduct(product);
                         },
                         child: Icon(
                           Icons.add,

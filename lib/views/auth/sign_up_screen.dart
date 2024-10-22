@@ -1,18 +1,14 @@
 import 'package:bnchinamartt/core/widgets/custom_text_field.dart';
 import 'package:bnchinamartt/models/user_data_model.dart';
 import 'package:bnchinamartt/view_models/user_provider.dart';
-
 import 'package:bnchinamartt/views/auth/login_screen.dart';
 import 'package:bnchinamartt/views/product/layout_screen.dart';
 import 'package:bnchinamartt/core/services/auth_service.dart';
 import 'package:bnchinamartt/core/services/auth_firestore_service.dart';
-
 import 'package:bnchinamartt/core/utils/validators.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/widgets/auth_banner.dart';
-
 import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/assets.dart';
