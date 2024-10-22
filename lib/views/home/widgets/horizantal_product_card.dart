@@ -1,6 +1,6 @@
 import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:bnchinamartt/view_models/basket_product_provider.dart';
-import 'package:bnchinamartt/views/product_detail_screen.dart';
+import 'package:bnchinamartt/views/product/screen/product_detail_screen.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 
 import 'package:flutter/material.dart';

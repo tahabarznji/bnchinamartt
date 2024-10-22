@@ -4,7 +4,7 @@ import 'package:bnchinamartt/core/utils/validators.dart';
 import 'package:bnchinamartt/models/order_data_model.dart';
 import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:bnchinamartt/view_models/user_provider.dart';
-import 'package:bnchinamartt/widgets/basket/basket_card.dart';
+import 'package:bnchinamartt/views/basket/widgets/basket_card.dart';
 import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

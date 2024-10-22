@@ -2,7 +2,7 @@ import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/funtions.dart';
 import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:bnchinamartt/view_models/basket_product_provider.dart';
-import 'package:bnchinamartt/widgets/category/category_box.dart';
+import 'package:bnchinamartt/views/category/widgets/category_box.dart';
 import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
 import 'package:bnchinamartt/models/order_data_model.dart';
-import 'package:bnchinamartt/views/orders/orders_card.dart';
+import 'package:bnchinamartt/views/orders/widgets/orders_card.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';

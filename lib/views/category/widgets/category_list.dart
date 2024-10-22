@@ -1,5 +1,5 @@
 import 'package:bnchinamartt/core/utils/data.dart';
-import 'package:bnchinamartt/widgets/category/category_card.dart';
+import 'package:bnchinamartt/views/category/widgets/category_card.dart';
 import 'package:flutter/material.dart';
 
 class CategoryList extends StatefulWidget {

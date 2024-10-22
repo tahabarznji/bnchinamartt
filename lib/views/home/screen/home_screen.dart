@@ -1,10 +1,10 @@
 import 'package:bnchinamartt/models/product_data_model.dart';
-import 'package:bnchinamartt/views/category/category_screen.dart';
+import 'package:bnchinamartt/views/category/screen/category_screen.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
-import 'package:bnchinamartt/widgets/products/horizantal_product.dart';
+import 'package:bnchinamartt/views/home/widgets/horizantal_product_card.dart';
 
-import 'package:bnchinamartt/widgets/category/category_list.dart';
-import 'package:bnchinamartt/widgets/products/trending_product_list.dart';
+import 'package:bnchinamartt/views/category/widgets/category_list.dart';
+import 'package:bnchinamartt/views/home/widgets/trending_product_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

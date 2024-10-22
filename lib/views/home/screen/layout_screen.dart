@@ -1,6 +1,6 @@
-import 'package:bnchinamartt/views/account/account_screen.dart';
-import 'package:bnchinamartt/views/basket/basket_screen.dart';
-import 'package:bnchinamartt/views/product/home_screen.dart';
+import 'package:bnchinamartt/views/account/screen/account_screen.dart';
+import 'package:bnchinamartt/views/basket/screen/basket_screen.dart';
+import 'package:bnchinamartt/views/home/screen/home_screen.dart';
 import 'package:bnchinamartt/core/utils/assets.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';

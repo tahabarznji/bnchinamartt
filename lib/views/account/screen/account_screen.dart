@@ -1,9 +1,9 @@
-import 'package:bnchinamartt/views/admin/admin_panel_screen.dart';
+import 'package:bnchinamartt/views/admin/screen/admin_panel_screen.dart';
 import 'package:bnchinamartt/view_models/user_provider.dart';
-import 'package:bnchinamartt/views/account/custom_tile.dart';
-import 'package:bnchinamartt/views/auth/change_pass_screen.dart';
-import 'package:bnchinamartt/views/auth/login_screen.dart';
-import 'package:bnchinamartt/views/orders/order_screen.dart';
+import 'package:bnchinamartt/views/account/widgets/custom_tile.dart';
+import 'package:bnchinamartt/views/auth/screen/change_pass_screen.dart';
+import 'package:bnchinamartt/views/auth/screen/login_screen.dart';
+import 'package:bnchinamartt/views/orders/screen/order_screen.dart';
 import 'package:bnchinamartt/core/services/auth_service.dart';
 import 'package:bnchinamartt/core/utils/assets.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';

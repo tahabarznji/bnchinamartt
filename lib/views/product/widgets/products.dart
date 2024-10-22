@@ -63,8 +63,8 @@
 import 'package:bnchinamartt/core/utils/colors.dart';
 import 'package:bnchinamartt/core/utils/data.dart';
 import 'package:bnchinamartt/models/product_data_model.dart';
-import 'package:bnchinamartt/widgets/products/prouduct_card.dart';
-import 'package:bnchinamartt/widgets/category/category_box.dart';
+import 'package:bnchinamartt/views/product/widgets/prouduct_card.dart';
+import 'package:bnchinamartt/views/category/widgets/category_box.dart';
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -79,14 +79,14 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
-  List<Map<String, dynamic>> flitterdProduct = [];
-  @override
-  void initState() {
-    flitterdProduct = products.where((product) {
-      return product['category'] == widget.category;
-    }).toList();
-    super.initState();
-  }
+  // List<Map<String, dynamic>> flitterdProduct = [];
+  // @override
+  // void initState() {
+  //   flitterdProduct = products.where((product) {
+  //     return product['category'] == widget.category;
+  //   }).toList();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
