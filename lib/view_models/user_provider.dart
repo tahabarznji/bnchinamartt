@@ -2,7 +2,7 @@ import 'package:bnchinamartt/models/user_data_model.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider with ChangeNotifier {
-  UserDataModel _userDataModel = UserDataModel(
+  UserDataModel _userDataModel = const UserDataModel(
       email: '',
       governance: '',
       id: '',
@@ -19,7 +19,7 @@ class UserProvider with ChangeNotifier {
   }
 
   void reset() {
-    _userDataModel = UserDataModel(
+    _userDataModel = const UserDataModel(
       email: '',
       id: '',
       porfilePicture: '',

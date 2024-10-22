@@ -9,8 +9,7 @@ class BasketCard extends StatefulWidget {
     super.key,
     required this.productDataModel,
   });
-  // final Map<String, dynamic> baskedProduct;
-  // final Map<String, dynamic> baskedProduct;
+
   final ProductDataModel productDataModel;
 
   @override
@@ -131,9 +130,6 @@ class _BasketCardState extends State<BasketCard> {
                         baseketProductProvider.addProduct(
                           widget.productDataModel,
                         );
-                        // basketedProduct.addProduct(widget.productDataModel);
-                        // baskedProduct.addProduct(widget.productDataModel);
-                        // setState(() {});
                       },
                       child: Icon(
                         Icons.add,
@@ -148,123 +144,5 @@ class _BasketCardState extends State<BasketCard> {
         ),
       );
     });
-
-    // Padding(
-    //   padding: const EdgeInsets.symmetric(vertical: 5),
-    //   child: Container(
-    //     height: 100,
-    //     decoration: BoxDecoration(
-    //       color: lightGreyColor,
-    //       borderRadius: BorderRadius.circular(8),
-    //     ),
-    //     padding: const EdgeInsets.all(4),
-    //     child: Row(
-    //       crossAxisAlignment: CrossAxisAlignment.end,
-    //       mainAxisAlignment: MainAxisAlignment.end,
-    //       children: [
-    //         Container(
-    //           padding: const EdgeInsets.all(5),
-    //           decoration: BoxDecoration(
-    //             color: whiteColor,
-    //             borderRadius: BorderRadius.circular(8),
-    //           ),
-    //           height: 90,
-    //           child: Center(
-    //             child: Image.network(
-    //               // baskedProduct["imgPath"],
-    //               productDataModel.imgPath,
-    //               width: 70,
-    //               height: 70,
-    //               fit: BoxFit.contain,
-    //             ),
-    //           ),
-    //         ),
-    //         const SizedBox(
-    //           width: 20,
-    //         ),
-    //         Expanded(
-    //           child: Column(
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             children: [
-    //               Text(
-    //                 // baskedProduct["name"],
-    //                 productDataModel.name,
-    //                 style: TextStyle(
-    //                     fontSize: 20,
-    //                     color: textColor,
-    //                     fontWeight: FontWeight.w900),
-    //               ),
-    //               Text(
-    //                 productDataModel.foodDetails,
-    //                 style: TextStyle(
-    //                     fontSize: 15,
-    //                     color: darkGreyColor,
-    //                     fontWeight: FontWeight.bold),
-    //               ),
-    //               Row(
-    //                 children: [
-    //                   Text(
-    //                     ' ${productDataModel.totalPrice} ',
-    //                     style: TextStyle(
-    //                         color: textColor,
-    //                         fontSize: 12,
-    //                         fontWeight: FontWeight.w900),
-    //                   ),
-    //                   const SizedBox(
-    //                     width: 5,
-    //                   ),
-    //                   Text(
-    //                     'IQD',
-    //                     style: TextStyle(color: darkGreyColor),
-    //                   ),
-    //                 ],
-    //               )
-    //             ],
-    //           ),
-    //         ),
-    //         Expanded(
-    //           child: Row(
-    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             children: [
-    //               FloatingActionButton.small(
-    //                 heroTag: '${productDataModel.imgPath} Column',
-    //                 backgroundColor: primaryColor,
-    //                 shape: RoundedRectangleBorder(
-    //                   borderRadius: BorderRadius.circular(19),
-    //                 ),
-    //                 onPressed: () {
-    //                   baskedProduct.removeProduct(productDataModel);
-    //                 },
-    //                 child: Icon(
-    //                   Icons.remove,
-    //                   color: whiteColor,
-    //                 ),
-    //               ),
-    //               Text(
-    //                 "${productDataModel.quantity}",
-    //                 style: const TextStyle(
-    //                     fontSize: 20, fontWeight: FontWeight.bold),
-    //               ),
-    //               FloatingActionButton.small(
-    //                 heroTag: '${productDataModel.imgPath} Column',
-    //                 backgroundColor: primaryColor,
-    //                 shape: RoundedRectangleBorder(
-    //                   borderRadius: BorderRadius.circular(19),
-    //                 ),
-    //                 onPressed: () {
-    //                   baskedProduct.addProduct(productDataModel);
-    //                 },
-    //                 child: Icon(
-    //                   Icons.add,
-    //                   color: whiteColor,
-    //                 ),
-    //               )
-    //             ],
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

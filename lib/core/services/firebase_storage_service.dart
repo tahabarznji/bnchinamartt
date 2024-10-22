@@ -14,14 +14,13 @@ class FirebaseStorageService {
 
   Future<String> uploadFile(File file, {String? fileName}) async {
     try {
-      String uniqueFileName = fileName ?? Uuid().v4();
+      String uniqueFileName = fileName ?? const Uuid().v4();
       Reference ref = _storage.ref().child('$_folder/$uniqueFileName');
       await ref.putFile(file);
       final String downloadURL = await ref.getDownloadURL();
 
       return downloadURL;
     } catch (e) {
-      print('Error uploading file: $e');
       rethrow;
     }
   }
@@ -33,7 +32,6 @@ class FirebaseStorageService {
       String url = await ref.getDownloadURL();
       return url;
     } catch (e) {
-      print('Error getting download URL: $e');
       rethrow;
     }
   }
@@ -44,7 +42,8 @@ class FirebaseStorageService {
       Reference ref = _storage.ref().child('$_folder/$fileName');
       await ref.delete();
     } catch (e) {
-      print('Error deleting file: $e');
+      debugPrint('Error deleting file: $e');
+
       rethrow;
     }
   }
@@ -67,7 +66,6 @@ class FirebaseStorageService {
       ListResult result = await ref.listAll();
       return result;
     } catch (e) {
-      print('Error listing files: $e');
       rethrow;
     }
   }

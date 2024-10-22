@@ -11,7 +11,7 @@ import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:bnchinamartt/widgets/auth_banner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bnchinamartt/core/widgets/custume_text_filed.dart';
+
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {

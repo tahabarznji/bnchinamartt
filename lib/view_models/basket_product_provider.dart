@@ -2,7 +2,7 @@ import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:flutter/material.dart';
 
 class BasketProductProvider extends ChangeNotifier {
-  List<ProductDataModel> _basketProducts = [];
+  final List<ProductDataModel> _basketProducts = [];
 
   List<ProductDataModel> get basektProducts => _basketProducts;
   void addProduct(ProductDataModel proudct) {

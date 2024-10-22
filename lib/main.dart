@@ -1,6 +1,6 @@
 import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:bnchinamartt/view_models/user_provider.dart';
-import 'package:bnchinamartt/views/auth/login_screen.dart';
+
 import 'package:bnchinamartt/widget_tree.dart';
 import 'package:flutter/material.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
@@ -32,6 +32,7 @@ class BnchinaMartApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Bnchina Mart App',
       theme: ThemeData(
         //logcal font m dawati lera

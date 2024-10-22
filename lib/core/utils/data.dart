@@ -4,7 +4,18 @@
 //   "password": "12121212",
 //   "discount": 0,
 // };
-
+List<String> productCategories = [
+  'Milk',
+  'Meat',
+  'Snaks',
+  'Drinks',
+  'Fruits',
+  'Coffee',
+  'Greens',
+  'Bread',
+  'Protein',
+  'Seafood',
+];
 List<Map<String, dynamic>> coubons = [
   {
     "code": "2314",

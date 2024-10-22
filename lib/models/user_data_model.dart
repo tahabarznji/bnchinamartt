@@ -68,7 +68,7 @@ class UserDataModel {
     return UserDataModel(
       id: id, // Keeping the same ID; excluded from being modified
       name: name ?? this.name,
-      porfilePicture: profilePicture ?? this.porfilePicture,
+      porfilePicture: profilePicture ?? porfilePicture,
       email: email ?? this.email,
       isAdmin: isAdmin ?? this.isAdmin,
       governance: governance ?? this.governance,

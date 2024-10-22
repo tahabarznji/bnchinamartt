@@ -2,7 +2,7 @@ import 'package:bnchinamartt/models/product_data_model.dart';
 import 'package:bnchinamartt/view_models/basket_product_provider.dart';
 import 'package:bnchinamartt/views/product_detail_screen.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
-import 'package:bnchinamartt/core/utils/funtions.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,13 +50,6 @@ class HorizantalProductCard extends StatelessWidget {
                 ),
                 height: 90,
                 child: Center(
-                  // child: Image.asset(
-                  //   // product["imgPath"],
-                  //   productDataModel.imgPath,
-                  //   width: 70,
-                  //   height: 70,
-                  //   fit: BoxFit.contain,
-                  // ),
                   child: Image.network(productDataModel.imgPath,
                       width: 70, height: 70, fit: BoxFit.contain),
                 ),
@@ -78,7 +71,7 @@ class HorizantalProductCard extends StatelessWidget {
                     ),
                     Text(
                       // product["details"],
-                      productDataModel.foodDetails ?? '',
+                      productDataModel.foodDetails,
                       style: TextStyle(
                           fontSize: 15,
                           color: darkGreyColor,

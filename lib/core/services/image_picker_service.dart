@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 
 class ImageService {
-  static ImagePicker _picker = ImagePicker();
+  static final ImagePicker _picker = ImagePicker();
 
   // Pick a single gallery image
   static Future<XFile?> pickGalleryItem() async {

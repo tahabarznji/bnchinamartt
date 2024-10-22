@@ -1,13 +1,13 @@
 import 'package:bnchinamartt/core/services/auth_service.dart';
 import 'package:bnchinamartt/core/utils/assets.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
-import 'package:bnchinamartt/core/utils/data.dart';
+
 import 'package:bnchinamartt/core/utils/validators.dart';
 import 'package:bnchinamartt/core/widgets/custom_button.dart';
 import 'package:bnchinamartt/core/widgets/custom_text_field.dart';
-import 'package:bnchinamartt/core/widgets/custume_text_filed.dart';
+
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 class ChangePassWordScreen extends StatefulWidget {
