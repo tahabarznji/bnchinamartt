@@ -1,9 +1,10 @@
 import 'package:bnchinamartt/models/order_data_model.dart';
+import 'package:bnchinamartt/views/orders/widgets/order_banner.dart';
 import 'package:bnchinamartt/views/orders/widgets/orders_card.dart';
 import 'package:bnchinamartt/core/utils/colors.dart';
 
 import 'package:bnchinamartt/core/widgets/my_app_bard.dart';
-import 'package:bnchinamartt/core/widgets/order_banner.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
